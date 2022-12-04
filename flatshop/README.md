@@ -23,4 +23,7 @@ Data : ShopVans <br/>
 <img src="./images/adminhome.png" style="height:300px;margin-bottom:10px"/>
 <h2>đổi lại cơ sở dữ liệu trong /flatshop/src/main/resources/database.properties và /flatshop/src/main/java/com/coosi29/flatshop/configuration/SpringConfiguration.java</h2>
 
+<h2>user : admin@gmail.com
+Pass : admin
+<\h2>
 <h2>Thank you for your interest in my project.</h2>

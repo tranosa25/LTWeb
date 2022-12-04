@@ -1,0 +1,54 @@
+@charset "ISO-8859-1";
+
+/* body {
+	 backgroun5d-image: url(../resource/client/images/bg.jpg);
+} */
+html {	
+	background:  linear-gradient(116deg, #000000 2%, #040A1F 30%, #06164A 66%, #043584 100%);
+	height:100%;
+	width:100%;
+	background-repeat: no-repeat;
+}
+
+html:before{
+	content:'';
+	position:fixed;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+	height :100%;
+	z-index: -1;
+	background:  linear-gradient(116deg, #000000 2%, #040A1F 30%, #06164A 66%, #043584 100%);
+}
+
+
+/* // Not demo related
+
+// Thanks to Corey Ginnivan for some design advice  */
+
+
+html {
+	margin: 0;
+	font-size: 1.15rem;
+	line-height: 1.4em;
+}
+
+/* #container {
+	background-color: #FFF;
+	margin: 80px 10%;
+	padding: 30px 60px;
+	border-radius: 20px;
+	box-shadow: 0 3px 26px 0 rgba(0,0,0,0.20);
+}
+
+main,header {
+	box-sizing: border-box;
+}
+
+main {
+	background-color: #f7f7f7;
+	padding: 20px;
+	border-radius: 10px;
+	color: #6b6b6b;
+	margin: 40px 0;
+} */

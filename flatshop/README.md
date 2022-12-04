@@ -25,5 +25,5 @@ Data : ShopVans <br/>
 
 <h2>user : admin@gmail.com
 Pass : admin
-<\h2>
+</h2>
 <h2>Thank you for your interest in my project.</h2>

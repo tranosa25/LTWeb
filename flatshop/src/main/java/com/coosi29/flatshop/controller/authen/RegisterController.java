@@ -16,11 +16,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.coosi29.flatshop.captcha.CaptchaConfig;
 import com.coosi29.flatshop.entity.Role;
 import com.coosi29.flatshop.entity.User;
 import com.coosi29.flatshop.model.RoleDTO;
 import com.coosi29.flatshop.model.UserDTO;
 import com.coosi29.flatshop.service.UserService;
+
 
 @Controller
 public class RegisterController {
@@ -41,7 +43,10 @@ public class RegisterController {
 			@RequestParam(name = "password") String password, @RequestParam(name = "repassword") String repassword,
 			@RequestParam(name = "fullname") String name, @RequestParam(name = "phone") String phone, @Valid User user,
 			BindingResult result) {
+		String gRecaptchaResp = request.getParameter("g-recaptcha-response");
+		Boolean verify= CaptchaConfig.verify(gRecaptchaResp);
 		String code = randomString(8);
+		if (verify) {
 		if (result.hasErrors()) {
 			return "authen/register";
 		} else if (userService.findByEmail(email) != null) {
@@ -93,6 +98,9 @@ public class RegisterController {
 		session.setAttribute("emailRegister", email);
 		session.setAttribute("codeVerify", code);
 		return "authen/verify";
+		}
+		else
+		{return "authen/register";}
 	}
 
 	@GetMapping(value = "/resend-code")

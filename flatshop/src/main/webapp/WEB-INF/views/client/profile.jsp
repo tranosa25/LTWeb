@@ -20,7 +20,9 @@
 <link href="../resource/client/css/sequence-looptheme.css"
 	rel="stylesheet" media="all" />
 <link href="../resource/client/css/style.css" rel="stylesheet">
-<!--[if lt IE 9]><script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script><script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script><![endif]-->
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script
+	src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 </head>
 
 <body id="home">
@@ -38,8 +40,8 @@
 							<p>Casio G Shock Digital Dial Black.</p>
 							<form action="../get-news" method="post">
 								<input class="email" type="text" name="email"
-									placeholder="Your Email..." required="required"> <input class="submit"
-									type="submit" value="Submit">
+									placeholder="Your Email..." required="required"> <input
+									class="submit" type="submit" value="Submit">
 							</form>
 						</div>
 						<div class="leftbanner">
@@ -49,9 +51,8 @@
 					<div class="col-md-9">
 						<div class="checkout-page">
 							<ol class="checkout-steps">
-								<li class="steps">
-									<a href="my-order"><div class="step-title">01. MY ORDER</div></a>
-								</li>
+								<li class="steps"><a href="my-order"><div
+											class="step-title">01. MY ORDER</div></a></li>
 								<li class="steps active">
 									<div style="display: flex;">
 										<span class="step-title">02. Billing information </span>

@@ -272,8 +272,12 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="number"]:focus,
 	position: relative;
 	width: 100%;
 }
-
-.header, .footer, .container_fullwidth {
+.header{position: relative;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height:95px;}
+ .footer, .container_fullwidth {
 	position: relative;
 	margin: 0;
 	padding: 0;
@@ -281,7 +285,7 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="number"]:focus,
 }
 
 .container_fullwidth {
-	background: #fff;
+	background: #f2f7f5;
 	padding-top: 30px;
 	padding-bottom: 30px;
 } /* HEADER STYLE */
@@ -300,10 +304,9 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="number"]:focus,
 }
 
 .header {
-	position: relative;
+	position: fixed;
 	background: #333333;
 }
-
 .logo {
 	float: left;
 	position: relative;
@@ -412,12 +415,11 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="number"]:focus,
 	color: #f7544a;
 }
 
-.usermenu {
+.usermenu{
 	float: right;
 	padding-top: 15px;
-	line-height:
+	line-height:1px;
 }
-
 .usermenu li {
 	float: left;
 	margin-left: 25px;
@@ -1001,7 +1003,7 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="number"]:focus,
 	overflow: hidden;
 	-webkit-border-radius: 10px;
 	border-radius: 10px;
-	background: #fff;
+	/* background: #fff; */
 	margin-bottom: 15px
 }
 
@@ -1027,13 +1029,14 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="number"]:focus,
 
 .thumbnail {
 	float: left;
-	position: relative;
-	width: 100%;
-	margin: 45px 0 5px 0;
+	/* position: relative;
+ */	width: 100%;
+	margin: 20px 0 5px 0;
 	padding: 0;
 	height: 230px;
 	border: none;
 	text-align: center;
+	z-index:0;
 }
 
 .productname {
@@ -1044,6 +1047,7 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="number"]:focus,
 	color: #2f2f2f;
 	margin-bottom: 10px;
 	color: #333333;
+	z-index:2;
 }
 
 .products .price {
@@ -1055,6 +1059,7 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="number"]:focus,
 	margin-bottom: 15px;
 	font-size: 20px;
 	line-height: 24px;
+	z-index:1;
 }
 
 .products .button_group {
@@ -1639,7 +1644,7 @@ form.newsletter input[type="submit"]:hover {
 
 .view-mode {
 	float: left;
-	width: 25%;
+	width: 15%;
 }
 
 .view-mode a {
@@ -1711,13 +1716,13 @@ form.newsletter input[type="submit"]:hover {
 	border-bottom-color: #f7544a;
 }
 
-.sort-by, .limiter {
+.sort-by, .limiter ,.pricing{
 	float: left;
 	margin-left: 20px;
 	font-size: 13px;
 }
 
-.sort-by select, .limiter select, select {
+.sort-by select, .limiter select,.pricing select, select {
 	padding: 6px;
 	border: 1px solid #e7e7e7;
 	-webkit-border-radius: 5px;
@@ -1727,7 +1732,7 @@ form.newsletter input[type="submit"]:hover {
 	min-width: 60px;
 }
 
-.sort-by option, .limiter option, option {
+.sort-by option, .limiter option,.pricing option,option {
 	color: #666666;
 }
 

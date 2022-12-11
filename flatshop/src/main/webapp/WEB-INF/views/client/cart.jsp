@@ -9,6 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="../resource/client/images/favicon.png">
 <title>Welcome to 5-SPORT</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="../resource/client/css/bootstrap.css" rel="stylesheet">
 <link
 	href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,500italic,100italic,100'
@@ -22,7 +23,7 @@
 <link href="../resource/client/css/style.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
-<!--[if lt IE 9]><script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script><script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script><![endif]-->
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script><script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 </head>
 <body id="home">
 	<div class="wrapper">
@@ -74,11 +75,11 @@
 													</div>
 												</td>
 												<td>
-													<h5 style="color: #41B314; font-weight: bold;">$${cart.value.unitPrice}0</h5>
+													<h5 style="color: #41B314; font-weight: bold;">${cart.value.unitPrice}00&#8363;</h5>
 													<c:if
 														test="${cart.value.productDTO.saleDTO.salePercent > 0}">
 														<p
-															style="font-size: 16px; padding-top: 7px; text-decoration: line-through;">$${cart.value.productDTO.price}0</p>
+															style="font-size: 16px; padding-top: 7px; text-decoration: line-through;">${cart.value.productDTO.price}00&#8363;</p>
 													</c:if>
 												</td>
 												<td>
@@ -91,22 +92,20 @@
 														</c:if>
 																	value="${i}">${i}</option>
 															</c:forEach>
-															<input type="hidden"
-															value="${cart.value.productDTO.productId}"
-															name="productId" />
+															<input type="hidden" value="${cart.value.productDTO.productId}" name="productId" />
 														</select>
 													</form>
 												</td>
 												<td>
 													<h5>
 														<strong class="red" style="font-weight: bold;">
-															$${Math.round(cart.value.unitPrice) *
-															cart.value.quantity}.00 </strong>
+															${Math.round(cart.value.unitPrice) *
+															cart.value.quantity}00&#8363; </strong>
 													</h5>
 												</td>
 												<td><a
 													href="delete-from-cart?productId=${cart.value.productDTO.productId}">
-														<i class="material-icons">&#xe92b;</i>
+														<i style = "font-size:28px;"class="fa fa-trash"></i>
 												</a></td>
 											</tr>
 										</c:forEach>
@@ -152,15 +151,15 @@
 										<div class="shippingbox">
 											<div class="subtotal">
 												<h5>Sub Total:</h5>
-												<span>$${sessionScope.subTotal}0</span>
+												<span>${sessionScope.subTotal}00&#8363;</span>
 											</div>
 											<div class="subtotal">
 												<h5>Shipping Fee:</h5>
-												<span> $5.00 </span>
+												<span> 25.000&#8363; </span>
 											</div>
 											<div class="grandtotal">
 												<h5>GRAND TOTAL</h5>
-												<span>$${sessionScope.grandTotal}0</span>
+												<span>${sessionScope.grandTotal}00&#8363;</span>
 											</div>
 											<c:if test="${sessionScope.user != null}">
 												<c:if
@@ -194,7 +193,7 @@
 		<jsp:include page="common/footer.jsp" />
 	</div>
 	<!-- Bootstrap core JavaScript==================================================-->
-	<script type="text/javascript"
+	<<!-- script type="text/javascript"
 		src="../resource/client/js/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript"
 		src="../resource/client/js/jquery.easing.1.3.js"></script>
@@ -206,6 +205,6 @@
 		src="../resource/client/js/jquery.carouFredSel-6.2.1-packed.js"></script>
 	<script defer src="../resource/client/js/jquery.flexslider.js"></script>
 	<script type="text/javascript"
-		src="../resource/client/js/script.min.js"></script>
+		src="../resource/client/js/script.min.js"></script> -->
 </body>
 </html>

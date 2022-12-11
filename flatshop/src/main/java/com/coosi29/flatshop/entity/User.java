@@ -26,13 +26,13 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
 	private long userId;
-	@NotBlank
+	@NotBlank(message = "please enter email!")
 	@Column(name = "email")
 	private String email;
-	
+	@NotBlank(message = "please enter password!")
 	@Column(name = "password")
 	private String password;
-	@NotBlank
+	@NotBlank(message = "please enter fullname!")
 	@Column(name = "full_name")
 	private String fullname;
 	@Phone(message = "Phone Number is invalid")

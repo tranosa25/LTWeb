@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
+<%@ page pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="images/favicon.png">
 <title>Welcome to FlatShop</title>
-<link href="../resource/client/css/bootstrap.css" rel="stylesheet">
+<!-- <link href="../resource/client/css/bootstrap.css" rel="stylesheet">
 <link
 	href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,500italic,100italic,100'
 	rel='stylesheet' type='text/css'>
@@ -20,7 +20,7 @@
 <link href="../resource/client/css/sequence-looptheme.css"
 	rel="stylesheet" media="all" />
 <link href="../resource/client/css/style.css" rel="stylesheet">
-<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script><script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script><script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script> -->
 </head>
 
 <body id="home">
@@ -49,24 +49,23 @@
 								<c:if test="${product.saleDTO.salePercent == 0}">
 									<span class="price"
 										style="font-size: 15px; color: black; text-decoration: line-through; margin-bottom: 0px; margin-top: -5px;">.</span>
-									<span class="price">$${product.price - (product.price *
-										product.saleDTO.salePercent / 100)}0</span>
+									<span class="price">${product.price - (product.price *
+										product.saleDTO.salePercent / 100)}00&#8363;</span>
 								</c:if>
 
 								<c:if test="${product.saleDTO.salePercent != 0}">
 									<span class="price"
-										style="font-size: 15px; color: black; text-decoration: line-through; margin-bottom: 0px; margin-top: -5px;">$${product.price}0</span>
-									<span class="price">$${product.price - (product.price *
-										product.saleDTO.salePercent / 100)}0</span>
+										style="font-size: 15px; color: black; text-decoration: line-through; margin-bottom: 0px; margin-top: -5px;">${product.price}00&#8363;</span>
+									<span class="price">${product.price - (product.price *
+										product.saleDTO.salePercent / 100)}00&#8363;</span>
 								</c:if>
 								<div class="button_group">
 									<a class="button add-cart" type="button"
-										href="add-to-cart?productId=${product.productId}">Add To
-										Cart</a>
+										href="add-to-cart?productId=${product.productId}"><s:message code="home.atcart"/></a>
 
-									<button class="button compare" type="button">
+								<!-- 	<button class="button compare" type="button">
 										<i class="fa fa-exchange"></i>
-									</button>
+									</button> -->
 									<button class="button wishlist" type="button">
 										<i class="fa fa-heart-o"></i>
 									</button>
@@ -92,25 +91,22 @@
 								<c:if test="${product.saleDTO.salePercent == 0}">
 									<span class="price"
 										style="font-size: 15px; color: black; text-decoration: line-through; margin-bottom: 0px; margin-top: -5px;">.</span>
-									<span class="price">$${product.price - (product.price *
-										product.saleDTO.salePercent / 100)}0</span>
+									<span class="price">${product.price - (product.price *
+										product.saleDTO.salePercent / 100)}00&#8363;</span>
 								</c:if>
 
 								<c:if test="${product.saleDTO.salePercent != 0}">
 									<span class="price"
-										style="font-size: 15px; color: black; text-decoration: line-through; margin-bottom: 0px; margin-top: -5px;">$${product.price}0</span>
-									<span class="price">$${product.price - (product.price *
-										product.saleDTO.salePercent / 100)}0</span>
+										style="font-size: 15px; color: black; text-decoration: line-through; margin-bottom: 0px; margin-top: -5px;">${product.price}00&#8363;</span>
+									<span class="price">${product.price - (product.price *
+										product.saleDTO.salePercent / 100)}00&#8363;</span>
 								</c:if>
 
 								<div class="button_group">
 									<a class="button add-cart" type="button"
-										href="add-to-cart?productId=${product.productId}">Add To
-										Cart</a>
+										href="add-to-cart?productId=${product.productId}"><s:message code="home.atcart"/></a>
 
-									<button class="button compare" type="button">
-										<i class="fa fa-exchange"></i>
-									</button>
+								
 									<button class="button wishlist" type="button">
 										<i class="fa fa-heart-o"></i>
 									</button>
@@ -123,14 +119,14 @@
 		</ul>
 	</div>
 	<!-- Bootstrap core JavaScript==================================================-->
-		<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+		<!-- <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
 		<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/jquery.sequence-min.js"></script>
 		<script type="text/javascript"
 			src="js/jquery.carouFredSel-6.2.1-packed.js"></script>
 		<script defer src="js/jquery.flexslider.js"></script>
-		<script type="text/javascript" src="js/script.min.js"></script>
+		<script type="text/javascript" src="js/script.min.js"></script> -->
 </body>
 
 </html>

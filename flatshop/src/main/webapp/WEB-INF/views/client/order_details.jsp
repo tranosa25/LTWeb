@@ -22,7 +22,7 @@
 <link href="../resource/client/css/style.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
-<!--[if lt IE 9]><script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script><script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script><![endif]-->
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script><script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 </head>
 <body id="home">
 	<div class="wrapper">
@@ -76,7 +76,7 @@
 													</div>
 												</td>
 												<td>
-													<h5 style="color: #41B314; font-weight: bold;">$${item.unitPrice}0</h5>
+													<h5 style="color: #41B314; font-weight: bold;">${item.unitPrice}00&#8363;</h5>
 													<c:if test="${item.productDTO.saleDTO.salePercent > 0}">
 														<p
 															style="font-size: 16px; padding-top: 7px; text-decoration: line-through;">$${item.productDTO.price}0</p>
@@ -89,8 +89,8 @@
 												</select></td>
 												<td>
 													<h5>
-														<strong class="red"> $${item.unitPrice *
-															item.quantity}0 </strong>
+														<strong class="red"> ${item.unitPrice *
+															item.quantity}00&#8363; </strong>
 													</h5>
 												</td>
 												<td><select>
@@ -122,7 +122,7 @@
 								</table>
 								<div class="subtotal" style="margin-top: -10px;"> 
 									<h5>Sub Total:</h5>
-									<span>$${requestScope.subTotal}0</span>
+									<span>${requestScope.subTotal}00&#8363;</span>
 								</div>
 								<div class="subtotal" style="margin-top: 5px;">
 									<h5>Shipping Fee:</h5>
@@ -130,7 +130,7 @@
 								</div>
 								<div class="grandtotal" style="margin-top: 5px;">
 									<h5>GRAND TOTAL</h5>
-									<span>$${requestScope.grandTotal}0</span>
+									<span>${requestScope.grandTotal}00&#8363;</span>
 								</div>
 								<div class="clearfix"></div>
 							</div>

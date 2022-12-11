@@ -70,7 +70,7 @@
 											<c:forEach items="${orders}" var="order">
 												<tr>
 													<td><a href="#">No. ${order.orderId}</a></td>
-													<td style="color: red; font-weight: bold;">$${order.priceTotal}0</td>
+													<td style="color: red; font-weight: bold;">${order.priceTotal}00&#8363;</td>
 													<td>${order.buyDate}</td>
 													<td><c:if test="${order.status == 'PENDING'}">
 															<span class="label label-warning">${order.status}</span>

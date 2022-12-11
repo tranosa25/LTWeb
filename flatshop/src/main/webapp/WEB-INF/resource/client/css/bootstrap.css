@@ -674,14 +674,14 @@ pre code {
 	content: " ";
 }
 
-.container:after {
+/* .container:after {
 	clear: both;
-}
+} */
 
-.container:before, .container:after {
+/* .container:before, .container:after {
 	display: table;
 	content: " ";
-}
+} */
 
 .container:after {
 	clear: both;
@@ -710,7 +710,7 @@ pre code {
 	margin-left: -15px;
 }
 
-.row:before, .row:after {
+/* .row:before, .row:after {
 	display: table;
 	content: " ";
 }
@@ -726,7 +726,7 @@ pre code {
 
 .row:after {
 	clear: both;
-}
+} */
 
 .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2,
 	.col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3,
@@ -1127,7 +1127,7 @@ pre code {
 		width: 83.33333333333334%;
 	}
 	.col-md-9 {
-		width: 75%;
+		width: 100%;
 	}
 	.col-md-8 {
 		width: 66.66666666666666%;

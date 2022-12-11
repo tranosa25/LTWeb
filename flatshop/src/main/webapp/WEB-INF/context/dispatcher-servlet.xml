@@ -36,6 +36,23 @@
 	</bean>
 	<bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-		<property name="basename" value="/i18n/message" />
+		<property name="basename" value="classpath:i18n/home" />
+		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<property name="defaultLocale" value="en" />
+	</bean>
+	<!-- <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver"> 
+		<property name="defaultLocale" value="en" /> <property name="cookieName" 
+		value="myAppLocaleCookie"></property> <property name="cookieMaxAge" value="3600"></property> 
+		</bean> -->
+	<mvc:interceptors>
+		<bean
+			class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<property name="paramName" value="lang" />
+		</bean>
+	</mvc:interceptors>
+
+
 </beans>

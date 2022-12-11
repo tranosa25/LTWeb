@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.coosi29.flatshop.captcha.CaptchaConfig;
 import com.coosi29.flatshop.model.UserDTO;
 import com.coosi29.flatshop.model.UserPrincipal;
 import com.coosi29.flatshop.service.UserService;
@@ -28,7 +29,10 @@ public class LoginController {
 
 	@GetMapping(value = "/login")
 	public String login(HttpServletRequest request, @RequestParam(name = "err", required = false) String err) {
-		request.setAttribute("err", err);
+		String gRecaptchaResp = request.getParameter("g-recaptcha-response");
+		Boolean verify= CaptchaConfig.verify(gRecaptchaResp);
+		if(verify)
+		{request.setAttribute("err", err);}
 		return "authen/login";
 	}
 

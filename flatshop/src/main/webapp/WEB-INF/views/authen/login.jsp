@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
+<%@page pageEncoding = "utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +17,7 @@
 		<div class="auth-form" style="background-color: rgba(0,0,0,0.4);">
 			<div class="auth-form-container">
 				<div class="auth-form-header">
-					<h3 class="auth-form-title">Login</h3>
+					<h3 class="auth-form-title"><s:message code="login.name"/></h3>
 					<a href="register" class="auth-form-subtitle">Register</a>
 				</div>
 				<p style="color: red; margin-top: -15px; margin-left: 3x; margin-bottom: 5px;">${err}</p>
@@ -34,7 +35,7 @@
 						<div ><a href="">Forgot password?</a></div>
 					</div>
 				</div>
-	
+	           
 				<div class="auth-form-controls">
 					<a href="client/home" class="btn">Back</a>
 					<button type="submit" class="btn" style="cursor: pointer;">Login</button>

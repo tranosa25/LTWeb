@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
+<%@page pageEncoding = "utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -36,25 +36,22 @@
 						<div class="row">
 							<div class="col-md-3">
 								<ul class="option_nav">
-									<li class="dorpdown"><a href="#">Eng</a></li>
-									<li class="dorpdown"><a href="#">Vi</a></li>
+									<li class="dorpdown"><a href="?lang=en">Eng</a></li>
+									<li class="dorpdown"><a href="?lang=vi">Vi</a></li>
 								</ul>
 							</div>
 							<div class="col-md-6">
-								<ul class="topmenu">
-									<li><a href="#"></a></li>
-									<li><a href="get_news"></a></li>
-									<li><a href="#"></a></li>
-									<li><a href="#"></a></li>
-									<li><a href="#"></a></li>
-									<li><a href="#"></a></li>
-								</ul>
+								<marquee style="margin-top:10px;color:white;font-size:24px;font-family:Helvetica">
+									Sale 30% ngày 12-12 
+									<span style="padding-right:40px;"></span>
+									Sale 30% ngày 12-12
+								</marquee>
 							</div>
 							<div class="col-md-3">
 								<c:if test="${sessionScope.user == null}">
 									<ul class="usermenu">
-										<li><a href="../login" class="log">Login</a></li>
-										<li><a href="../register" class="reg">Register</a></li>
+										<li><a href="../login" class="log"><s:message code="login.name"/></a></li>
+										<li><a href="../register" class="reg"><s:message code="reg.name"/></a></li>
 									</ul>
 								</c:if>
 

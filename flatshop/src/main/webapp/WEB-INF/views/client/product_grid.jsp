@@ -30,7 +30,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-3">
-						<div class="category leftbar">
+						<%-- 		<div class="category leftbar">
 							<h3 class="title">Categories</h3>
 							<ul>
 								<c:forEach items="${categories}" var="category">
@@ -38,9 +38,9 @@
 										href="product-grid?categoryId=${category.categoryId}">${category.categoryName}</a></li>
 								</c:forEach>
 							</ul>
-						</div>
+						</div> --%>
 
-						<div class="price-filter leftbar">
+						<%-- <div class="price-filter leftbar">
 							<h3 class="title">Price</h3>
 							<form class="pricing" action="search" method="get">
 								<select name="pricing" onchange='this.form.submit()'>
@@ -68,9 +68,9 @@
 									<input type="hidden" name="text" value="${text}" />
 								</select>
 							</form>
-						</div>
+						</div> --%>
 
-						<div class="clearfix"></div>
+						<!-- 	<div class="clearfix"></div>
 						<div class="others leftbar">
 							<h3 class="title">Others</h3>
 						</div>
@@ -91,18 +91,18 @@
 								<li><a href="#"> </a></li>
 								<li><a href="#"> </a></li>
 								<li><a href="#"> </a></li>
-							</ul>
-							<div class="fbplug">
+							</ul> -->
+						<!-- 		<div class="fbplug">
 								<a href="#"> <span> <img
 										src="../resource/client/images/fbicon.png" alt="">
 								</span> Facebook social plugin
 								</a>
-							</div>
-						</div>
+							</div> -->
+						<!-- 	</div>
 						<div class="clearfix"></div>
 						<div class="leftbanner">
 							<img src="../resource/client/images/vans.jpg" alt="">
-						</div>
+						</div> -->
 					</div>
 					<div class="col-md-9">
 						<div class="clearfix"></div>
@@ -125,17 +125,21 @@
 											<div class="productname">${product.productName}</div>
 
 											<c:if test="${product.saleDTO.salePercent == 0}">
-												<span class="price"
-													style="font-size: 15px; color: black; text-decoration: line-through; margin-bottom: 0px; margin-top: -5px;">.</span>
-												<span class="price">$${product.price - (product.price
-													* product.saleDTO.salePercent / 100)}0</span>
+												<div style="display: flex;">
+													<span class="price"
+														style="font-size: 15px; color: black; text-decoration: line-through; margin-bottom: 0px; margin-top: -5px;">.</span>
+													<span class="price">${product.price - (product.price
+													* product.saleDTO.salePercent / 100)}00&#8363;</span>
+												</div>
 											</c:if>
 
 											<c:if test="${product.saleDTO.salePercent != 0}">
-												<span class="price"
-													style="font-size: 15px; color: black; text-decoration: line-through; margin-bottom: 0px; margin-top: -5px;">$${product.price}0</span>
-												<span class="price">$${product.price - (product.price
-													* product.saleDTO.salePercent / 100)}0</span>
+												<div style="display: flex;">
+													<span class="price"
+														style="margin: 5px;padding: 10px;font-size: 15px; color: black; text-decoration: line-through; margin-bottom: 0px; margin-top: -5px;">${product.price}00&#8363;</span>
+													<span style="margin: 5px;padding: 10px;" class="price">${product.price - (product.price
+													* product.saleDTO.salePercent / 100)}00&#8363;</span>
+												</div>
 											</c:if>
 
 											<div class="button_group">
@@ -155,7 +159,7 @@
 								<div class="clearfix"></div>
 
 								<!-- Tool Bar -->
-								<jsp:include page="common/toolbar.jsp" />
+								<%-- <jsp:include page="common/toolbar.jsp" /> --%>
 
 
 								<div class="clearfix"></div>
@@ -164,6 +168,7 @@
 					</div>
 
 					<!-- 			<div th:replace="client/common/ourbands :: ourbands"></div> -->
+
 
 				</div>
 			</div>

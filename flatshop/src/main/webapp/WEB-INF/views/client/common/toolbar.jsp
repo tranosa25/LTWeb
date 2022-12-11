@@ -11,9 +11,10 @@
 	<div class="toolbar">
 		<div class="sorter">
 			<div class="view-mode">
-				<a href="#" class="list"> List </a> <a href="#"
-					class="grid active"> Grid </a>
+				<a href="#" class="list"> List </a> <a href="#" class="grid active">
+					Grid </a>
 			</div>
+
 			<form action="search" method="get">
 				<div class="sort-by">
 					Sort By Price: <select name="sort" onchange="this.form.submit()">
@@ -61,22 +62,53 @@
 						type="hidden" value="${text}" name="text" />
 				</form>
 			</div>
+			<form class="pricing" action="search" method="get">
+				<select name="pricing" onchange='this.form.submit()'>
+					<option
+						<c:if test="${pricing eq 'default'}">
+										selected="selected"
+										</c:if>
+						value="default">Find by price</option>
+					<option
+						<c:if test="${pricing eq 'under50'}">
+										selected="selected"
+										</c:if>
+						value="under50">under 50 dollars</option>
+					<option
+						<c:if test="${pricing eq '50to70'}">
+										selected="selected"
+										</c:if>
+						value="50to70">50 dollars to 70 dollars</option>
+					<option
+						<c:if test="${pricing eq 'greaterthan70'}">
+										selected="selected"
+										</c:if>
+						value="greaterthan70">greater than 70 dollars</option>
+					<input type="hidden" name="categoryId" value="${categoryId}" />
+					<input type="hidden" name="text" value="${text}" />
+				</select>
+			</form>
 		</div>
 		<div class="pager">
-			<a href="#" class="prev-page"> <i class="fa fa-angle-left"> </i>
+			<a
+				href="search?pricing=${pricing}&text=${text}&pageIndex=${i-1}&categoryId=${categoryId}&pageSize=${pageSize}"
+				class="prev-page"> <i class="fa fa-angle-left"> </i>
 			</a>
 			<c:forEach begin="0" end="${totalPage - 1}" var="i">
+
 				<a
 					href="search?pricing=${pricing}&text=${text}&pageIndex=${i}&categoryId=${categoryId}&pageSize=${pageSize}"
 					<c:if test="${pageIndex == i}">
 				class="active"
 			</c:if>>
 					${i+1} </a>
-			</c:forEach>
 
-			<a href="#" class="next-page"> <i class="fa fa-angle-right">
-			</i>
+			</c:forEach>
+			<a
+				href="search?pricing=${pricing}&text=${text}&pageIndex=${i+1}&categoryId=${categoryId}&pageSize=${pageSize}"
+				class="next-page"> <i class="fa fa-angle-right"> </i>
 			</a>
+
 		</div>
 	</div>
 </body>

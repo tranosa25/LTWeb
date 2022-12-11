@@ -1,5 +1,6 @@
 <%@ page pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script src="https://www.google.com/recaptcha/api.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,16 +31,20 @@
 					</div>
 					<div class="auth-form-group">
 						<input class="auth-form-input" type="email" name="email"
-							placeholder="Email" required="required" value="${email}"/>
+							placeholder="Email" required="required" value="${email}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+							title="example : xxx@gmail.com"/>
 					</div>
 					<div class="auth-form-group">
-						<input class="auth-form-input" type="password" name="password"
-							placeholder="Password" required="required" />
+						<input class="auth-form-input" type="password" id="password" name="password"
+							placeholder="Password" required="required" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+  title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"/>
 					</div>
 					<div class="auth-form-group">
-						<input class="auth-form-input" type="password" name="repassword"
-							placeholder="Re-password" required="required" />
+						<input class="auth-form-input" type="password" name="repassword" id="confirm_password"
+							placeholder="Re-password" required="required" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+  title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"/>
 					</div>
+					<div class="g-recaptcha input-group" data-sitekey="6LdO2lwjAAAAAHv-cges_Ow5UpDoDqAO4hqeV08e"></div>
 				</div>
 
 				<div class="auth-form-controls">
@@ -55,6 +60,21 @@
 				style='font-size: 20px; color: tomato'>&#xf2b3;</i> Login with
 				Google </a>
 		</div>
+		<script>
+		var password = document.getElementById("password")
+		  , confirm_password = document.getElementById("confirm_password");
+
+		function validatePassword(){
+		  if(password.value != confirm_password.value) {
+		    confirm_password.setCustomValidity("Passwords Don't Match");
+		  } else {
+		    confirm_password.setCustomValidity('');
+		  }
+		}
+
+		password.onchange = validatePassword;
+		confirm_password.onkeyup = validatePassword;
+		</script>
 	</div>
 </body>
 </html>

@@ -69,9 +69,9 @@
 								<hr class="border">
 								<div class="price">
 									Price : <span class="new_price">
-										<sup> $${product.price - (product.price * product.saleDTO.salePercent / 100)}0 </sup>
+										<sup> ${product.price - (product.price * product.saleDTO.salePercent / 100)}00&#8363; </sup>
 									</span> <span class="old_price"><sup>
-											$${product.price}0  </sup> </span>
+											${product.price}00&#8363;  </sup> </span>
 								</div>
 								<hr class="border">
 								<form action="add-to-cart" method="post">

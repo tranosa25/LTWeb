@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		role.setRoleId(userDTO.getRoleDTO().getRoleId());
 
 		User user = new User();
-		user.setUserId(userDTO.getUserId());
+		//user.setUserId(userDTO.getUserId());
 		user.setEmail(userDTO.getEmail());
 		user.setPhone(userDTO.getPhone());
 		user.setAddress(userDTO.getAddress());
@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		role.setRoleId(userDTO.getRoleDTO().getRoleId());
 
 		User user = new User();
-		user.setUserId(userDTO.getUserId());
+		//user.setUserId(userDTO.getUserId());
 		user.setEmail(userDTO.getEmail());
 		user.setPhone(userDTO.getPhone());
 		user.setAddress(userDTO.getAddress());

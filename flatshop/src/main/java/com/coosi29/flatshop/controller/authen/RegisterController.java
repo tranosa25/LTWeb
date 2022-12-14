@@ -23,7 +23,6 @@ import com.coosi29.flatshop.model.RoleDTO;
 import com.coosi29.flatshop.model.UserDTO;
 import com.coosi29.flatshop.service.UserService;
 
-
 @Controller
 public class RegisterController {
 
@@ -42,65 +41,68 @@ public class RegisterController {
 	public String register(HttpServletRequest request, @RequestParam(name = "email") String email,
 			@RequestParam(name = "password") String password, @RequestParam(name = "repassword") String repassword,
 			@RequestParam(name = "fullname") String name, @RequestParam(name = "phone") String phone, @Valid User user,
-			BindingResult result) {
+			BindingResult result, @RequestParam(name = "gender") boolean gender) {
 		String gRecaptchaResp = request.getParameter("g-recaptcha-response");
-		Boolean verify= CaptchaConfig.verify(gRecaptchaResp);
+		Boolean verify = CaptchaConfig.verify(gRecaptchaResp);
 		String code = randomString(8);
+		// String bithday = year+"-"+month+"-"+day;
 		if (verify) {
-		if (result.hasErrors()) {
-			return "authen/register";
-		} else if (userService.findByEmail(email) != null) {
-			UserDTO userDTO = userService.findByEmail(email);
-			if (userDTO.isVerify() == true) {
-				request.setAttribute("error", "The email address is already exist!");
+			if (result.hasErrors()) {
 				return "authen/register";
-			} else {
+			} else if (userService.findByEmail(email) != null) {
+				UserDTO userDTO = userService.findByEmail(email);
+				if (userDTO.isVerify() == true) {
+					request.setAttribute("error", "The email address is already exist!");
+					return "authen/register";
+				} else {
+					if (!password.equals(repassword)) {
+						request.setAttribute("error", "The password do not match!");
+						request.setAttribute("email", email);
+						userDTO.setPassword(repassword);
+						userDTO.setAvatar("1608484153089.png");
+						userService.update(userDTO);
+						return "authen/register";
+					} else {
+						userDTO.setPassword(new BCryptPasswordEncoder().encode(password));
+						userService.update(userDTO);
+						sendEmail("tranosa2511@gmail.com", email, "Welcome to FlatShop!",
+								"Hello, " + email.split("@")[0] + "! Please confirm that you can login in FlatShop!"
+										+ " Your confirmation code is: " + code);
+					}
+				}
+
+			}
+
+			else {
 				if (!password.equals(repassword)) {
 					request.setAttribute("error", "The password do not match!");
 					request.setAttribute("email", email);
-					userDTO.setPassword(repassword);
-					userDTO.setAvatar("1608484153089.png");
-					userService.update(userDTO);
 					return "authen/register";
 				} else {
+					UserDTO userDTO = new UserDTO();
+					userDTO.setEmail(email);
+					userDTO.setPhone(phone);
+					userDTO.setFullname(name);
 					userDTO.setPassword(new BCryptPasswordEncoder().encode(password));
-					userService.update(userDTO);
+					userDTO.setAvatar("1608484153089.png");
+					userDTO.setGender(gender);
+					RoleDTO roleDTO = new RoleDTO();
+					roleDTO.setRoleId(3);
+					// userDTO.setVerify(false);
+					userDTO.setRoleDTO(roleDTO);
+					userService.insert(userDTO);
 					sendEmail("tranosa2511@gmail.com", email, "Welcome to FlatShop!",
 							"Hello, " + email.split("@")[0] + "! Please confirm that you can login in FlatShop!"
 									+ " Your confirmation code is: " + code);
 				}
 			}
-
+			HttpSession session = request.getSession();
+			session.setAttribute("emailRegister", email);
+			session.setAttribute("codeVerify", code);
+			return "authen/verify";
+		} else {
+			return "authen/register";
 		}
-
-		else {
-			if (!password.equals(repassword)) {
-				request.setAttribute("error", "The password do not match!");
-				request.setAttribute("email", email);
-				return "authen/register";
-			} else {
-				UserDTO userDTO = new UserDTO();
-				userDTO.setEmail(email);
-				userDTO.setPhone(phone);
-				userDTO.setFullname(name);
-				userDTO.setPassword(new BCryptPasswordEncoder().encode(password));
-				userDTO.setAvatar("1608484153089.png");
-				RoleDTO roleDTO = new RoleDTO();
-				roleDTO.setRoleId(3);
-				// userDTO.setVerify(false);
-				userDTO.setRoleDTO(roleDTO);
-				userService.insert(userDTO);
-				sendEmail("tranosa2511@gmail.com", email, "Welcome to FlatShop!", "Hello, " + email.split("@")[0]
-						+ "! Please confirm that you can login in FlatShop!" + " Your confirmation code is: " + code);
-			}
-		}
-		HttpSession session = request.getSession();
-		session.setAttribute("emailRegister", email);
-		session.setAttribute("codeVerify", code);
-		return "authen/verify";
-		}
-		else
-		{return "authen/register";}
 	}
 
 	@GetMapping(value = "/resend-code")

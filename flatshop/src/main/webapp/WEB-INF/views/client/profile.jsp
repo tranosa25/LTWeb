@@ -32,7 +32,7 @@
 		<div class="container_fullwidth">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-3">
+				<!-- 	<div class="col-md-3">
 						<div class="get-newsletter leftbar" style="margin-top: 0px;">
 							<h3 class="title">
 								Get <strong> newsletter </strong>
@@ -47,7 +47,7 @@
 						<div class="leftbanner">
 							<img src="../resource/client/images/vans.jpg" alt="">
 						</div>
-					</div>
+					</div> -->
 					<div class="col-md-9">
 						<div class="checkout-page">
 							<ol class="checkout-steps">

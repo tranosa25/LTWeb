@@ -19,6 +19,7 @@ and open the template in the editor.
 
 }
 
+
 .auth-form-container {
 	padding: 0 32px;
 }
@@ -35,26 +36,41 @@ and open the template in the editor.
 }
 
 .auth-form-subtitle {
-	color: red;
+	color: rgb(255, 255, 255);
 	text-decoration: none;
 }
 
 .auth-form-subtitle:hover {
-	color: blue;
+	color: rgb(0, 128, 192);
 }
 
 .auth-form-input {
-	width: 92%;
+	width: 99%;
 	height: 32px;
 	margin-bottom: 24px;
 	padding: 0 12px;
 	border: 1px solid #bdbdbd;
-	border-radius: 3px;
+	border-radius: 7px;
 	outline: none;
 }
 
 .auth-form-input:focus {
-	border-color: #777;
+
+	border-color: blue;
+}
+.auth-form-select {
+	width: 32%;
+	height: 32px;
+	margin-bottom: 24px;
+	padding: 0 12px;
+	border: 1px solid #bdbdbd;
+	border-radius: 7px;
+	outline: none;
+}
+
+.auth-form-select:focus {
+
+	border-color: blue;
 }
 
 .auth-form-controls {
@@ -69,13 +85,14 @@ and open the template in the editor.
 	min-width: 160px;
 	padding-top: 8px;
 	padding-bottom: 8px;
-	border-radius: 3px;
-	background-color: rgb(2, 192, 192);
+	border-radius: 7px;
+	background-color:black;
 	border: none;
 	outline: none;
 	text-decoration: none;
 }
-
+.forgot{color:white;}
+.forgot:hover{color:blue;}
 .btn:hover {
 	background-color: #FB5533;
 }
@@ -84,6 +101,7 @@ and open the template in the editor.
 	background-color:rgba(0,0,0,0.5);
 	padding: 10px 10px;
 	display: flex;
+	height:50px;
 	justify-content: space-between;
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
@@ -92,20 +110,39 @@ and open the template in the editor.
 
 .btn-social-fb {
 	color: blue;
+	display:flex;
 	border-radius: 10px;
 	background-color:rgba(0,0,0,0.5);
-	padding: 5px 8px;
+	padding: 6px 8px;
+	width:44%;
 	text-decoration: none;
 	margin:5px;
+}
+.btn-social-fb .a{
+	padding-top:2%;
+	
+}
+.btn-social-fb .b{
+	padding-top:1,9%;
+	padding-left:4%;
 }
 
 .btn-social-gg {
 	color: #FB5533;
+	display:flex;
 	border-radius: 10px;
 	background-color: rgba(0,0,0,0.5);
-	padding: 6px 18px;
+	padding: 6px 8px;
+	width:40%;
 	text-decoration: none;
-		margin:5px;
+	margin:5px;
+}
+.btn-social-gg .a{
+	padding-top:2%;
+}
+.btn-social-gg .b{
+	padding-top:1,9%;
+	padding-left:4%;
 }
 
 .btn-social-fb:hover {

@@ -29,10 +29,7 @@ public class LoginController {
 
 	@GetMapping(value = "/login")
 	public String login(HttpServletRequest request, @RequestParam(name = "err", required = false) String err) {
-		String gRecaptchaResp = request.getParameter("g-recaptcha-response");
-		Boolean verify= CaptchaConfig.verify(gRecaptchaResp);
-		if(verify)
-		{request.setAttribute("err", err);}
+		request.setAttribute("err", err);
 		return "authen/login";
 	}
 

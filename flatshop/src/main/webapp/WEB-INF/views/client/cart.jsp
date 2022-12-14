@@ -192,8 +192,8 @@
 
 		<jsp:include page="common/footer.jsp" />
 	</div>
-	<!-- Bootstrap core JavaScript==================================================-->
-	<<!-- script type="text/javascript"
+<!-- 	Bootstrap core JavaScript================================================== -->
+	<script type="text/javascript"
 		src="../resource/client/js/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript"
 		src="../resource/client/js/jquery.easing.1.3.js"></script>
@@ -205,6 +205,6 @@
 		src="../resource/client/js/jquery.carouFredSel-6.2.1-packed.js"></script>
 	<script defer src="../resource/client/js/jquery.flexslider.js"></script>
 	<script type="text/javascript"
-		src="../resource/client/js/script.min.js"></script> -->
+		src="../resource/client/js/script.min.js"></script>
 </body>
 </html>

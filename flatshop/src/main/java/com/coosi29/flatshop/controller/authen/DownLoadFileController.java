@@ -16,7 +16,7 @@ public class DownLoadFileController {
 
 	@GetMapping(value = "/download")
 	public void download(HttpServletResponse response, @RequestParam("image") String image) {
-		final String uploadFolder = "D:\\image_spring_boot\\";
+		final String uploadFolder = "D:\\image_spring_boot";
 		File file = new File(uploadFolder + File.separator + image);
 		if (file.exists()) {
 			try {

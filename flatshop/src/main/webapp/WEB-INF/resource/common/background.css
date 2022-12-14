@@ -4,7 +4,7 @@
 	 backgroun5d-image: url(../resource/client/images/bg.jpg);
 } */
 html {	
-	background:  linear-gradient(116deg, #000000 2%, #040A1F 30%, #06164A 66%, #043584 100%);
+	background-image: linear-gradient(to bottom right, #0100EC, #FB36F4);
 	height:100%;
 	width:100%;
 	background-repeat: no-repeat;
@@ -18,7 +18,7 @@ html:before{
 	width: 100%;
 	height :100%;
 	z-index: -1;
-	background:  linear-gradient(116deg, #000000 2%, #040A1F 30%, #06164A 66%, #043584 100%);
+	background-image: linear-gradient(to bottom right, #0100EC, #FB36F4);
 }
 
 

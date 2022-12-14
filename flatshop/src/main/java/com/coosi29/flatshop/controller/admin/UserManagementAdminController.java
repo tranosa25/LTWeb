@@ -96,7 +96,7 @@ public class UserManagementAdminController {
 				int lastIndex = originalFilename.lastIndexOf(".");
 				String ext = originalFilename.substring(lastIndex);
 				String avatarFilename = System.currentTimeMillis() + ext;
-				File newfile = new File("C:\\image_spring_boot\\" + avatarFilename);
+				File newfile = new File("D:\\image_spring_boot" + avatarFilename);
 				FileOutputStream fileOutputStream;
 				try {
 					fileOutputStream = new FileOutputStream(newfile);
@@ -154,7 +154,7 @@ public class UserManagementAdminController {
 			int lastIndex = originalFilename.lastIndexOf(".");
 			String ext = originalFilename.substring(lastIndex);
 			String avatarFilename = System.currentTimeMillis() + ext;
-			File newfile = new File("C:\\image_spring_boot\\" + avatarFilename);
+			File newfile = new File("D:\\image_spring_boot" + avatarFilename);
 			FileOutputStream fileOutputStream;
 			try {
 				fileOutputStream = new FileOutputStream(newfile);

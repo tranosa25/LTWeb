@@ -60,23 +60,23 @@
 													<p class="demo-button">
 														<a class="btn btn-default" href="product-list"
 															style="padding: 4px 8px; text-decoration: none; border: none; box-shadow: 2px 2px gray; font-weight: bold;">All
-															Product</a> 
-														<a class="btn btn-success" href="product-list-by-category?categoryId=3"
+															Product</a> <a class="btn btn-success"
+															href="product-list-by-category?categoryId=3"
 															style="background-color: #41B314; padding: 4px 8px; text-decoration: none; border: none; margin-left: 7px;">Vans
-															ERA</a> 
-														<a class="btn btn-info" href="product-list-by-category?categoryId=2"
+															ERA</a> <a class="btn btn-info"
+															href="product-list-by-category?categoryId=2"
 															style="background-color: #E4CB10; padding: 4px 8px; text-decoration: none; border: none; margin-left: 5px;">Vans
-															classic</a> 
-														<a class="btn btn-primary" href="product-list-by-category?categoryId=1"
+															classic</a> <a class="btn btn-primary"
+															href="product-list-by-category?categoryId=1"
 															style="background-color: #00AAFF; padding: 4px 8px; text-decoration: none; border: none; margin-left: 5px;">Vans
-															authentic</a> 
-														<a class="btn btn-warning" href="product-list-by-category?categoryId=4"
+															authentic</a> <a class="btn btn-warning"
+															href="product-list-by-category?categoryId=4"
 															style="background-color: #D9534F; padding: 4px 8px; text-decoration: none; border: none; margin-left: 5px;">Vans
-															old skool</a> 
-														<a class="btn btn-danger" href="product-list-by-category?categoryId=5"
+															old skool</a> <a class="btn btn-danger"
+															href="product-list-by-category?categoryId=5"
 															style="background-color: #5BC0DE; padding: 4px 8px; text-decoration: none; border: none; margin-left: 5px;">Vans
-															SK8</a> 
-														<a class="btn btn-danger" href="product-list-by-category?categoryId=6"
+															SK8</a> <a class="btn btn-danger"
+															href="product-list-by-category?categoryId=6"
 															style="background-color: gray; padding: 4px 8px; text-decoration: none; border: none; margin-left: 5px;">Vans
 															slip-on</a>
 													</p>
@@ -94,15 +94,17 @@
 													<table class="table" style="margin: auto;">
 														<thead>
 															<tr>
-																<th><input type="checkbox" name="all" id="checkAll" style="cursor: pointer;"/></th>
+																<th><input type="checkbox" name="all" id="checkAll"
+																	style="cursor: pointer;" /></th>
 																<th>ID</th>
 																<th>Product Name</th>
 																<th>Price</th>
 																<th>Quantity</th>
 																<th>Sale</th>
 																<th style="width: 10%;">Image</th>
-																<th style="width: 22%;">Description</th>
+																<th style="width: 20%;">Description</th>
 																<th>Edit</th>
+																<th>Detail</th>
 															</tr>
 														</thead>
 														<tbody>
@@ -111,24 +113,33 @@
 																<tr>
 																	<td style="vertical-align: middle;"><input
 																		class="checkbox" type="checkbox" name="productId"
-																		value="${product.productId}" id="${loop.count}" style="cursor: pointer;"/></td>
+																		value="${product.productId}" id="${loop.count}"
+																		style="cursor: pointer;" /></td>
 																	<td style="vertical-align: middle;">${product.productId}</td>
 																	<td style="vertical-align: middle;">${product.productName}</td>
 																	<td style="vertical-align: middle;"><span
-																		style="color: #41B314; font-weight: bold;">$${product.price - (product.price * (product.saleDTO.salePercent / 100))}0</span><br />
-																		<c:if test="${product.saleDTO.salePercent != 0}">
-																		<span style="text-decoration: line-through;'">$${product.price}.0</span>
-																		</c:if>
-																	</td>
+																		style="color: #41B314; font-weight: bold;">$${product.price
+																			- (product.price * (product.saleDTO.salePercent /
+																			100))}0</span><br /> <c:if
+																			test="${product.saleDTO.salePercent != 0}">
+																			<span style="text-decoration: line-through;'">$${product.price}.0</span>
+																		</c:if></td>
 																	<td style="vertical-align: middle;">${product.quantity}</td>
 																	<td
 																		style="vertical-align: middle; color: #D9534F; font-weight: bold;">-${product.saleDTO.salePercent}%</td>
 																	<td style="vertical-align: middle;"><img
-																		style="width: 70%;" src="../download?image=${product.image}"></td>
+																		style="width: 70%;"
+																		src="../download?image=${product.image}"></td>
 																	<td style="vertical-align: middle;">${product.description}</td>
-																	<td style="vertical-align: middle;"><a href="product-update?productId=${product.productId}">
+																	<td style="vertical-align: middle;"><a
+																		href="product-update?productId=${product.productId}">
 																			<span class="label label-warning"
 																			style="font-size: 15px;">Update</span>
+																	</a></td>
+																	<td style="vertical-align: middle;"><a
+																		href="productdetail-list?productId=${product.productId}&productName=${product.productName}">
+																			<span class="label label-warning"
+																			style="font-size: 15px;">Detail</span>
 																	</a></td>
 																</tr>
 															</c:forEach>
@@ -140,12 +151,11 @@
 												style="margin-top: -30px;">
 												<ul class="pagination">
 													<c:forEach begin="0" end="${totalPage-1}" var="i">
-													<li class="page-item">
-													<a class="page-link" href="product-list?pageIndex=${i}"
-														<c:if test="${pageIndex == i}">
+														<li class="page-item"><a class="page-link"
+															href="product-list?pageIndex=${i}"
+															<c:if test="${pageIndex == i}">
 														style="background-color: #F0AD4E; color: white;"
-														</c:if>
-														>${i+1}</a></li>
+														</c:if>>${i+1}</a></li>
 													</c:forEach>
 												</ul>
 											</nav>

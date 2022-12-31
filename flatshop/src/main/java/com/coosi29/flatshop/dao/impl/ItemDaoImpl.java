@@ -45,7 +45,7 @@ public class ItemDaoImpl implements ItemDao {
 
 	@Override
 	public List<Item> findByOrderId(long orderId) {
-		String sql = "SELECT i FROM Item i WHERE i.order.orderId = " + orderId;
+		String sql = "SELECT i FROM Item i LEFT OUTER JOIN i.detail pd WHERE i.order.orderId = " + orderId;
 		Query query = sessionFactory.getCurrentSession().createQuery(sql);
 		return query.list();
 	}

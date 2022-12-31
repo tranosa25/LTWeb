@@ -4,8 +4,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,109 +20,74 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.coosi29.flatshop.model.CategoryDTO;
 import com.coosi29.flatshop.model.ProductDTO;
+import com.coosi29.flatshop.model.ProductDetailDTO;
 import com.coosi29.flatshop.model.SaleDTO;
-import com.coosi29.flatshop.service.CategoryService;
+import com.coosi29.flatshop.service.ColorService;
+import com.coosi29.flatshop.service.ProductDetailService;
 import com.coosi29.flatshop.service.ProductService;
-import com.coosi29.flatshop.service.SaleService;
-
-// Product Manager
+import com.coosi29.flatshop.service.SizeService;
 
 @Controller
 @RequestMapping(value = "/admin")
-public class ProductManagementAdminController {
-	public long ID;
+public class Product_DetailManagementAdminController {
 	@Autowired
 	private ProductService productService;
-	
 	@Autowired
-	private SaleService saleService;
-	
+	private ColorService colorService;
 	@Autowired
-	private CategoryService categoryService;
-	
-	// Show all product
-	@GetMapping(value = "/product-list")
-	public String findAll(HttpServletRequest request) {
+	private SizeService sizeService;
+	@Autowired
+	private ProductDetailService detailService;
+
+	@GetMapping(value = "/productdetail-list")
+	public String findAll(HttpServletRequest request, @RequestParam(name = "productId") long prouctId,
+			@RequestParam(name = "productName") String prouctName) {
 		int pageIndex = 0;
 		int pageSize = 5;
-		
-		if (request.getParameter("pageIndex") != null) {
-			pageIndex = Integer.parseInt(request.getParameter("pageIndex"));
-		}
-		int totalPage = 0;
-		int count = productService.count();
-		if (count % pageSize == 0) {
-			totalPage = count / pageSize;
-		} else {
-			totalPage = count / pageSize + 1;
-		}
-		
+		/*
+		 * if (request.getParameter("pageIndex") != null) { pageIndex =
+		 * Integer.parseInt(request.getParameter("pageIndex")); } int totalPage = 0; int
+		 * count = detailService.count(); if (count % pageSize == 0) { totalPage = count
+		 * / pageSize; } else { totalPage = count / pageSize + 1; }
+		 */
+
 		request.setAttribute("default", "default");
-		request.setAttribute("pageIndex", pageIndex);
-		request.setAttribute("totalPage", totalPage);
-		request.setAttribute("products", productService.findAll(pageIndex ,pageSize));
-		return "admin/product/listProduct";
+		request.setAttribute("ProductName", prouctName);
+		// request.setAttribute("pageIndex", pageIndex);
+		// request.setAttribute("totalPage", totalPage);
+		request.setAttribute("details", detailService.findAllByproductId(prouctId));
+		return "admin/product_detail/listProductDetail";
 	}
-	
-	// Show all product by category
-	
-	@GetMapping(value = "/product-list-by-category")
-	public String findAllByCategory(HttpServletRequest request, @RequestParam(name = "categoryId") long categoryId) {
-		int pageIndex = 0;
-		int pageSize = 5;
-		
-		if (request.getParameter("pageIndex") != null) {
-			pageIndex = Integer.parseInt(request.getParameter("pageIndex"));
-		}
-		int totalPage = 0;
-		int count = productService.countByCategoryId(categoryId);
-		if (count % pageSize == 0) {
-			totalPage = count / pageSize;
-		} else {
-			totalPage = count / pageSize + 1;
-		}
-		
-		request.setAttribute("categoryId", categoryId);
-		request.setAttribute("pageIndex", pageIndex);
-		request.setAttribute("totalPage", totalPage);
-		request.setAttribute("products", productService.findAllByCategoryId(categoryId, pageIndex, pageSize));
-		return "admin/product/listProductByCategory";
-	}
-	
-	// Create new product
-	
-	@GetMapping(value = "/product-create")
+
+	@GetMapping(value = "/productdetail-create")
 	public String insert(HttpServletRequest request) {
-		request.setAttribute("categories", categoryService.findAll());
-		request.setAttribute("sales", saleService.findAll());
-		return "admin/product/createNewProduct";
+		request.setAttribute("product", productService.findAllIdName());
+		request.setAttribute("color", colorService.findAll());
+		request.setAttribute("size", sizeService.findAll());
+		return "admin/product_detail/createProductDetail";
 	}
-	
-	@PostMapping(value = "/product-create")
-	public String insertPost(HttpServletRequest request, @RequestParam(name = "categoryId") long categoryId,
-			@RequestParam(name = "productName") String productName,
-			@RequestParam(name = "description") String description,
-			@RequestParam(name = "price") float price,
-			@RequestParam(name = "quantity") int quantity,
-			@RequestParam(name = "saleId") String saleId,
-			@RequestParam(name = "imageFile") MultipartFile imageFile) {
-		CategoryDTO categoryDTO = new CategoryDTO();
-		categoryDTO.setCategoryId(categoryId);
-		SaleDTO saleDTO = new SaleDTO();
-		saleDTO.setSaleId(saleId);
-		ProductDTO productDTO = new ProductDTO();
-		productDTO.setCategoryDTO(categoryDTO);
-		productDTO.setSaleDTO(saleDTO);
-		productDTO.setProductName(productName);
-		productDTO.setDescription(description);
-		productDTO.setPrice(price);
-		productDTO.setQuantity(quantity);
+
+	@PostMapping(value = "/productdetail-create")
+	public String insertPost(HttpServletRequest request, @RequestParam(name = "productId") long productId,
+			@RequestParam(name = "quantity") int quantity, @RequestParam(name = "colorId") int colorId,
+			@RequestParam(name = "sizeId") int sizeId, @RequestParam(name = "imageFile") MultipartFile imageFile) {
+		ProductDetailDTO detailDTO = new ProductDetailDTO();
+		detailDTO.setColorId(colorId);
+		detailDTO.setProductId(productId);
+		detailDTO.setQuantity(quantity);
+		detailDTO.setSizeId(sizeId);
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		// tạo 1 đối tượng có định dạng thời gian yyyy-MM-dd
+		Date date = new Date(); // lấy thời gian hệ thống
+		String stringDate = dateFormat.format(date);// Định dạng thời gian theo trên
+		System.out.println("Date: " + stringDate);
+		detailDTO.setDate(stringDate);
 		if (imageFile != null && imageFile.getSize() > 0) {
 			String originalFilename = imageFile.getOriginalFilename();
 			int lastIndex = originalFilename.lastIndexOf(".");
 			String ext = originalFilename.substring(lastIndex);
 			String avatarFilename = System.currentTimeMillis() + ext;
-			File newfile = new File("D:\\image_spring_boot" + File.separator+ avatarFilename);
+			File newfile = new File("D:\\image_spring_boot" + File.separator + avatarFilename);
 			FileOutputStream fileOutputStream;
 			try {
 				fileOutputStream = new FileOutputStream(newfile);
@@ -131,37 +98,38 @@ public class ProductManagementAdminController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			productDTO.setImage(avatarFilename);
+			detailDTO.setImage(avatarFilename);
 		}
-		
-		productService.insert(productDTO);
+
+		detailService.insert(detailDTO);
 		return "redirect:../admin/productdetail-create";
 	}
-	
-	
+
 	// Update product
-	
-	@GetMapping(value = "/product-update")
+
+	@GetMapping(value = "/productdetail-update")
 	public String update(HttpServletRequest request, @RequestParam(name = "productId") long productId) {
 		request.setAttribute("product", productService.findById(productId));
 		request.setAttribute("sales", saleService.findAll());
 		request.setAttribute("categories", categoryService.findAll());
 		return "admin/product/updateProduct";
 	}
-	
-	@PostMapping(value = "/product-update")
+
+	@PostMapping(value = "/productdetail-update")
 	public String update(HttpServletRequest request,
+
 			@RequestParam(name = "newPrice", required = false) String newPrice,
+
 			@RequestParam(name = "imageFile", required = false) MultipartFile imageFile) {
 		long productId = Long.parseLong(request.getParameter("productId"));
-		long categoryId = Long.parseLong(request.getParameter("categoryId")); 
+		long categoryId = Long.parseLong(request.getParameter("categoryId"));
 		float oldprice = Float.parseFloat(request.getParameter("oldPrice"));
 		String productName = request.getParameter("productName");
 		String description = request.getParameter("description");
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
 		String image = request.getParameter("image");
 		String saleId = request.getParameter("saleId");
-		
+
 		SaleDTO saleDTO = new SaleDTO();
 		saleDTO.setSaleId(saleId);
 		CategoryDTO categoryDTO = new CategoryDTO();
@@ -183,7 +151,7 @@ public class ProductManagementAdminController {
 			int lastIndex = originalFilename.lastIndexOf(".");
 			String ext = originalFilename.substring(lastIndex);
 			String avatarFilename = System.currentTimeMillis() + ext;
-			File newfile = new File("D:\\image_spring_boot" + File.separator+ avatarFilename);
+			File newfile = new File("D:\\image_spring_boot" + avatarFilename);
 			FileOutputStream fileOutputStream;
 			try {
 				fileOutputStream = new FileOutputStream(newfile);
@@ -198,19 +166,20 @@ public class ProductManagementAdminController {
 		} else {
 			productDTO.setImage(image);
 		}
-		
+
 		productService.update(productDTO);
 		return "redirect:/admin/product-list";
 	}
-	
+
 	// Delete Product
-	
-	@GetMapping(value = "/product-delete")
+
+	@GetMapping(value = "/productdetail-delete")
 	public String delete(HttpServletRequest request) {
-		String[] productIds = request.getParameterValues("productId");
-		for (String productId : productIds) {
-			productService.delete(Long.parseLong(productId));
+		String[] productdetailIds = request.getParameterValues("detailId");
+		for (String detailId : productdetailIds) {
+			productService.delete(Long.parseLong(detailId));
 		}
 		return "redirect:../admin/product-list";
 	}
+
 }

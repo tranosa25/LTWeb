@@ -158,7 +158,39 @@ public class ProductServiceImpl implements ProductService {
 		}
 		return productDTOs;
 	}
-
+    
+	@Override
+	public List<ProductDTO> findAllIdName() {
+		List<Product> products = productDao.findAllIdName();
+		List<ProductDTO> productDTOs = new ArrayList<>();
+		for (Product product : products) {
+			SaleDTO saleDTO = new SaleDTO();
+			
+			saleDTO.setSaleId(product.getSale().getSaleId());
+			saleDTO.setSalePercent(product.getSale().getSalePercent());
+			
+			CategoryDTO categoryDTO = new CategoryDTO();
+			
+			categoryDTO.setCategoryId(product.getCategory().getCategoryId());
+			categoryDTO.setCategoryName(product.getCategory().getCategoryName());
+			
+			ProductDTO productDTO = new ProductDTO();
+			
+			productDTO.setProductId(product.getProductId());
+			productDTO.setProductName(product.getProductName());
+			productDTO.setImage(product.getImage());
+			productDTO.setDescription(product.getDescription());
+			productDTO.setPrice(product.getPrice());
+			productDTO.setQuantity(product.getQuantity());
+			productDTO.setSaleDTO(saleDTO);
+			productDTO.setCategoryDTO(categoryDTO);
+			
+			productDTOs.add(productDTO);
+			
+		}
+		return productDTOs;
+	}
+	
 	@Override
 	public int count() {
 		return productDao.count();
@@ -235,8 +267,8 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public List<ProductDTO> search(long categoryId, String pricing, float priceFrom, float priceTo, String sort,
-			String text, int pageIndex, int pageSize) {
-		List<Product> products = productDao.search(categoryId, pricing, priceFrom, priceTo, sort, text, pageIndex, pageSize);
+			String text, int pageIndex, int pageSize,int colorId) {
+		List<Product> products = productDao.search(categoryId, pricing, priceFrom, priceTo, sort, text, pageIndex, pageSize,colorId);
 		List<ProductDTO> productDTOs = new ArrayList<>();
 		for (Product product : products) {
 			SaleDTO saleDTO = new SaleDTO();
@@ -267,8 +299,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public int countBySearch(long categoryId, String pricing, float priceFrom, float priceTo, String text) {
-		return productDao.countBySearch(categoryId, pricing, priceFrom, priceTo, text);
+	public int countBySearch(long categoryId, String pricing, float priceFrom, float priceTo, String text,int colorId) {
+		return productDao.countBySearch(categoryId, pricing, priceFrom, priceTo, text,colorId);
 	}
 
 }

@@ -30,18 +30,21 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-3">
-						<%-- 		<div class="category leftbar">
-							<h3 class="title">Categories</h3>
+						<div class="category leftbar">
+							<h3 class="title">Color</h3>
 							<ul>
-								<c:forEach items="${categories}" var="category">
+								<c:forEach items="${colors}" var="color">
 									<li><a
-										href="product-grid?categoryId=${category.categoryId}">${category.categoryName}</a></li>
+										href="search?pricing=${pricing}&text=${text}&pageIndex=${pageIndex}&categoryId=${categoryId}&pageSize=${pageSize}&colorId=${color.getColorId()}">
+											${color.getColor()}</a>
+											<input type="hidden" name="colorId" value="${color.getColorId()}" />
+									</li>
 								</c:forEach>
 							</ul>
-						</div> --%>
+						</div>
 
-						<%-- <div class="price-filter leftbar">
-							<h3 class="title">Price</h3>
+						<div class="price-filter leftbar">
+							<h3 class="title">Size</h3>
 							<form class="pricing" action="search" method="get">
 								<select name="pricing" onchange='this.form.submit()'>
 									<option
@@ -68,9 +71,9 @@
 									<input type="hidden" name="text" value="${text}" />
 								</select>
 							</form>
-						</div> --%>
+						</div>
 
-						<!-- 	<div class="clearfix"></div>
+						<div class="clearfix"></div>
 						<div class="others leftbar">
 							<h3 class="title">Others</h3>
 						</div>
@@ -91,18 +94,18 @@
 								<li><a href="#"> </a></li>
 								<li><a href="#"> </a></li>
 								<li><a href="#"> </a></li>
-							</ul> -->
-						<!-- 		<div class="fbplug">
+							</ul>
+							<div class="fbplug">
 								<a href="#"> <span> <img
 										src="../resource/client/images/fbicon.png" alt="">
 								</span> Facebook social plugin
 								</a>
-							</div> -->
-						<!-- 	</div>
+							</div>
+						</div>
 						<div class="clearfix"></div>
 						<div class="leftbanner">
 							<img src="../resource/client/images/vans.jpg" alt="">
-						</div> -->
+						</div>
 					</div>
 					<div class="col-md-9">
 						<div class="clearfix"></div>
@@ -123,26 +126,22 @@
 													src="../download?image=${product.image}" alt="Product Name"></a>
 											</div>
 											<div class="productname">${product.productName}</div>
-
-											<c:if test="${product.saleDTO.salePercent == 0}">
-												<div style="display: flex;">
+											<div>
+												<c:if test="${product.saleDTO.salePercent == 0}">
 													<span class="price"
 														style="font-size: 15px; color: black; text-decoration: line-through; margin-bottom: 0px; margin-top: -5px;">.</span>
 													<span class="price">${product.price - (product.price
 													* product.saleDTO.salePercent / 100)}00&#8363;</span>
-												</div>
-											</c:if>
+												</c:if>
 
-											<c:if test="${product.saleDTO.salePercent != 0}">
-												<div style="display: flex;">
+												<c:if test="${product.saleDTO.salePercent != 0}">
 													<span class="price"
-														style="margin: 5px;padding: 10px;font-size: 15px; color: black; text-decoration: line-through; margin-bottom: 0px; margin-top: -5px;">${product.price}00&#8363;</span>
-													<span style="margin: 5px;padding: 10px;" class="price">${product.price - (product.price
+														style="font-size: 15px; color: black; text-decoration: line-through; margin-bottom: 0px; margin-top: -5px;">${product.price}00&#8363;</span>
+													<span class="price">${product.price - (product.price
 													* product.saleDTO.salePercent / 100)}00&#8363;</span>
-												</div>
-											</c:if>
-
-											<div class="button_group">
+												</c:if>
+											</div>
+											<%-- <div class="button_group">
 												<a class="button add-cart" type="button"
 													href="add-to-cart?productId=${product.productId}">Add
 													To Cart</a>
@@ -152,7 +151,7 @@
 												<button class="button wishlist" type="button">
 													<i class="fa fa-heart-o"></i>
 												</button>
-											</div>
+											</div> --%>
 										</div>
 									</div>
 								</c:forEach>

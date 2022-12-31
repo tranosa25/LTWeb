@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Dashboard | Klorofil - Free Bootstrap Dashboard Template</title>
+<title>Admin Dashboard</title>
 <meta charset="utf-8">
 </head>
 

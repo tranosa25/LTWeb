@@ -114,8 +114,9 @@
 																<th>Quantity</th>
 																<th>Sale</th>
 																<th style="width: 10%;">Image</th>
-																<th style="width: 22%;">Description</th>
+																<th style="width: 20%;">Description</th>
 																<th>Edit</th>
+																<th>Detail</th>
 															</tr>
 														</thead>
 														<tbody>
@@ -139,9 +140,13 @@
 																	<td style="vertical-align: middle;"><img
 																		style="width: 70%;" src="../download?image=${product.image}"></td>
 																	<td style="vertical-align: middle;">${product.description}</td>
-																	<td style="vertical-align: middle;"><a href="product-update?productId=${product.productId}"">
+																	<td style="vertical-align: middle;"><a href="product-update?productId=${product.productId}">
 																			<span class="label label-warning"
 																			style="font-size: 15px;">Update</span>
+																	</a></td>
+																	<td style="vertical-align: middle;"><a href="productdetail-list?productId=${product.productId}&productName=${product.productName}">
+																			<span class="label label-warning"
+																			style="font-size: 15px;">Detail</span>
 																	</a></td>
 																</tr>
 															</c:forEach>

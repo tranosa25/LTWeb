@@ -1,5 +1,7 @@
 package com.coosi29.flatshop.model;
 
+import com.coosi29.flatshop.entity.Product_Detail;
+
 public class ItemDTO {
 	
 	private long itemId;
@@ -7,18 +9,27 @@ public class ItemDTO {
 	private float unitPrice;
 	private int quantity;
 	private OrderDTO orderDTO;
-	
+	private ProductDetailDTO detailDTO;
 	public ItemDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ItemDTO(long itemId, ProductDTO productDTO, float unitPrice, int quantity, OrderDTO orderDTO) {
+	public ItemDTO(long itemId, ProductDTO productDTO, float unitPrice, int quantity, OrderDTO orderDTO,
+			ProductDetailDTO detailDTO) {
 		super();
 		this.itemId = itemId;
 		this.productDTO = productDTO;
 		this.unitPrice = unitPrice;
 		this.quantity = quantity;
 		this.orderDTO = orderDTO;
+		this.detailDTO = detailDTO;
+	}
+	public ProductDetailDTO getDetailDTO() {
+		return detailDTO;
+	}
+
+	public void setDetailDTO(ProductDetailDTO detailDTO) {
+		this.detailDTO = detailDTO;
 	}
 
 	public long getItemId() {

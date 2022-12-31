@@ -84,16 +84,17 @@
 										selected="selected"
 										</c:if>
 						value="greaterthan70">greater than 70 dollars</option>
-					<input type="hidden" name="categoryId" value="${categoryId}" />
+					<input type="hidden" name="categoryId" value="${categoryId}"></input>
 					<input type="hidden" name="text" value="${text}" />
 				</select>
 			</form>
 		</div>
 		<div class="pager">
-			<a
-				href="search?pricing=${pricing}&text=${text}&pageIndex=${i-1}&categoryId=${categoryId}&pageSize=${pageSize}"
-				class="prev-page"> <i class="fa fa-angle-left"> </i>
-			</a>
+			<c:if test="${pageIndex >= 0}">
+				<a
+					href="search?pricing=${pricing}&text=${text}&pageIndex=${pageIndex-1}&categoryId=${categoryId}&pageSize=${pageSize}"
+					class="prev-page"><i class="fa fa-angle-left"> </i> </a>
+			</c:if>
 			<c:forEach begin="0" end="${totalPage - 1}" var="i">
 
 				<a
@@ -104,11 +105,12 @@
 					${i+1} </a>
 
 			</c:forEach>
-			<a
-				href="search?pricing=${pricing}&text=${text}&pageIndex=${i+1}&categoryId=${categoryId}&pageSize=${pageSize}"
-				class="next-page"> <i class="fa fa-angle-right"> </i>
-			</a>
-
+			<c:if test="${pageIndex < totalPage}">
+				<a
+					href="search?pricing=${pricing}&text=${text}&pageIndex=${pageIndex+1}&categoryId=${categoryId}&pageSize=${pageSize}"
+					class="next-page"> <i class="fa fa-angle-right"> </i>
+				</a>
+			</c:if>
 		</div>
 	</div>
 </body>

@@ -12,6 +12,7 @@ public interface ProductService {
 
 	void delete(long productId);
 
+	List<ProductDTO> findAllIdName() ;
 	ProductDTO findById(long productId);
 
 	List<ProductDTO> findAll(int pageIndex, int pageSize);
@@ -21,12 +22,12 @@ public interface ProductService {
 	int count();
 	
 	int countByCategoryId(long categoryId);
-	
+
 	List<ProductDTO> hotProducts(int pageIndex, int pageSize);
 	
 	List<ProductDTO> featuredProducts(int pageIndex, int pageSize);
 	
-	List<ProductDTO> search(long categoryId, String pricing, float priceFrom, float priceTo, String sort, String text, int pageIndex, int pageSize);
+	List<ProductDTO> search(long categoryId, String pricing, float priceFrom, float priceTo, String sort, String text, int pageIndex, int pageSize,int colorId);
 
-	int countBySearch(long categoryId, String pricing, float priceFrom, float priceTo, String text);
+	int countBySearch(long categoryId, String pricing, float priceFrom, float priceTo, String text,int colorId);
 }

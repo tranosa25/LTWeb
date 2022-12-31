@@ -41,6 +41,18 @@ public class Item {
 	@ManyToOne
 	@JoinColumn(name = "order_id")
 	private Order order;
+	
+	@ManyToOne
+	@JoinColumn(name = "detail_id")
+	private Product_Detail detail;
+
+	public Product_Detail getDetail() {
+		return detail;
+	}
+
+	public void setDetail(Product_Detail detail) {
+		this.detail = detail;
+	}
 
 	public long getItemId() {
 		return itemId;

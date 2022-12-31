@@ -60,7 +60,7 @@
 									<span class="price">${product.price - (product.price *
 										product.saleDTO.salePercent / 100)}00&#8363;</span>
 								</c:if>
-
+<%-- 
 								<div class="button_group">
 									<a class="button add-cart" type="button"
 										href="add-to-cart?productId=${product.productId}"><s:message code="home.atcart"/></a>
@@ -70,7 +70,7 @@
 									<button class="button wishlist" type="button">
 										<i class="fa fa-heart-o"></i>
 									</button>
-								</div>
+								</div> --%>
 							</div>
 						</div>
 					</c:forEach>
@@ -103,7 +103,7 @@
 									<span class="price">${product.price - (product.price *
 										product.saleDTO.salePercent / 100)}00&#8363;</span>
 								</c:if>
-
+<%-- 
 								<div class="button_group">
 									<a class="button add-cart" type="button"
 										href="add-to-cart?productId=${product.productId}">Add To
@@ -114,7 +114,7 @@
 									<button class="button wishlist" type="button">
 										<i class="fa fa-heart-o"></i>
 									</button>
-								</div>
+								</div> --%>
 							</div>
 						</div>
 					</c:forEach>

@@ -4,6 +4,7 @@ public class CartDTO {
 	
 	private long cartId;
 	private UserDTO userDTO;
+	private ProductDetailDTO productdetailDTO;
 	private ProductDTO productDTO;
 	private int quantity;
 	
@@ -11,12 +12,21 @@ public class CartDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CartDTO(long cartId, UserDTO userDTO, ProductDTO productDTO, int quantity) {
+	public CartDTO(long cartId, UserDTO userDTO, ProductDTO productDTO, int quantity,ProductDetailDTO productdetailDTO) {
 		super();
+		this.productdetailDTO = productdetailDTO;
 		this.cartId = cartId;
 		this.userDTO = userDTO;
 		this.productDTO = productDTO;
 		this.quantity = quantity;
+	}
+    
+	public ProductDetailDTO getProductdetailDTO() {
+		return productdetailDTO;
+	}
+
+	public void setProductdetailDTO(ProductDetailDTO productdetailDTO) {
+		this.productdetailDTO = productdetailDTO;
 	}
 
 	public long getCartId() {

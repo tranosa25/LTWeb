@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.coosi29.flatshop.service.CategoryService;
+import com.coosi29.flatshop.service.ColorService;
 import com.coosi29.flatshop.service.ProductService;
 
 @Controller
@@ -17,18 +18,20 @@ public class HomeClientController {
 
 	@Autowired
 	private CategoryService categoryService;
-	
+	@Autowired
+	private ColorService colorService;
 	@Autowired
 	private ProductService productService;
 	
 	
 	@GetMapping(value = "/home")
-	public String home(HttpServletRequest request, HttpSession session) {
+	public String home(HttpServletRequest request, HttpSession session ) {
 		request.setAttribute("hotOne", productService.hotProducts(0, 4));
 		request.setAttribute("hotTwo", productService.hotProducts(1, 4));
 		request.setAttribute("featuredOne", productService.featuredProducts(0, 4));
 		request.setAttribute("featuredTwo", productService.featuredProducts(1, 4));
 		session.setAttribute("categories", categoryService.findAll());
+		session.setAttribute("colors", colorService.findAll());
 		return "client/home";
 	}
 }

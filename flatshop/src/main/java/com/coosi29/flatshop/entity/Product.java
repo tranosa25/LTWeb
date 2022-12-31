@@ -1,15 +1,22 @@
 package com.coosi29.flatshop.entity;
 
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.coosi29.flatshop.model.SaleDTO;
+import com.coosi29.flatshop.entity.Product_Detail;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -39,12 +46,23 @@ public class Product {
 	@ManyToOne
 	@JoinColumn(name = "category_id")
 	private Category category;
+	
+	public void setProductId(long productId) {
+		this.productId = productId;
+	}
 	@ManyToOne
 	@JoinColumn(name = "sale_id")
 	private Sale sale;
 
-	public void setProductId(long productId) {
-		this.productId = productId;
+	@OneToMany(mappedBy = "product")
+	private List<Product_Detail> details;
+	
+	
+	public List<Product_Detail> getDetails() {
+		return details;
+	}
+	public void setDetails(List<Product_Detail> details) {
+		this.details = details;
 	}
 	public void setProductName(String productName) {
 		this.productName = productName;

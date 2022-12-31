@@ -16,6 +16,7 @@ import com.coosi29.flatshop.dao.OrderDao;
 import com.coosi29.flatshop.entity.Item;
 import com.coosi29.flatshop.entity.Order;
 import com.coosi29.flatshop.entity.Product;
+import com.coosi29.flatshop.entity.Product_Detail;
 import com.coosi29.flatshop.entity.User;
 import com.coosi29.flatshop.model.ItemDTO;
 import com.coosi29.flatshop.model.UserPrincipal;
@@ -68,10 +69,12 @@ public class CheckoutController {
 		    
 		    Product product = new Product();
 		    product.setProductId(entry.getValue().getProductDTO().getProductId());
-		    
+		    Product_Detail prodetail = new Product_Detail();
+		    prodetail.setDetail_id(entry.getValue().getDetailDTO().getDetailId());
 		    Item item = new Item();
 		    item.setItemId(entry.getValue().getItemId());
 		    item.setProduct(product);
+		    item.setDetail(prodetail);
 		    item.setQuantity(entry.getValue().getQuantity());
 		    item.setUnitPrice(entry.getValue().getUnitPrice());
 		    item.setOrder(order);

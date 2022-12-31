@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.coosi29.flatshop.model.ItemDTO;
 import com.coosi29.flatshop.model.ProductDTO;
+import com.coosi29.flatshop.model.ProductDetailDTO;
+import com.coosi29.flatshop.service.ProductDetailService;
 import com.coosi29.flatshop.service.ProductService;
 
 @Controller
@@ -22,6 +24,8 @@ public class CartClientController {
 
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private ProductDetailService detailService;
 	
 	@GetMapping(value = "/cart")
 	public String cart(HttpServletRequest request, HttpSession session) {
@@ -37,7 +41,7 @@ public class CartClientController {
 			    totalQuantity += value.getQuantity();
 			    subTotal += (value.getUnitPrice() * value.getQuantity());
 			}
-			grandTotal = subTotal + 5;
+			grandTotal = subTotal + 25;
 		}
 		session.setAttribute("totalQuantity", totalQuantity);
 		session.setAttribute("subTotal", subTotal);
@@ -61,6 +65,7 @@ public class CartClientController {
 			itemsDTO.setProductDTO(productDTO);
 			itemsDTO.setUnitPrice(unitPrice);
 			itemsDTO.setQuantity(1);
+			//itemsDTO
 			Map<Long, ItemDTO> mapItem = new HashMap<Long, ItemDTO>();
 			mapItem.put(productId, itemsDTO); // luu san pham vao map(gio hang) voi key = id cua san pham
 			session.setAttribute("cart", mapItem); // luu gio hang vao session
@@ -86,16 +91,17 @@ public class CartClientController {
 	
 	@PostMapping(value = "/add-to-cart")
 	public String addToCart(HttpSession session, @RequestParam(name = "productId") long productId,
-			@RequestParam(name = "quantity") int quantity) {
+			@RequestParam(name = "quantity") int quantity,@RequestParam(name="colorId")int colorId,@RequestParam(name="sizeId") int sizeId) {
+		ProductDetailDTO detailDTO=detailService.findproductdetailID(productId,colorId, sizeId) ;
 		ProductDTO productDTO = productService.findById(productId);
 		float unitPrice = productDTO.getPrice() - Math.round((productDTO.getPrice() * productDTO.getSaleDTO().getSalePercent() / 100));
-		
 		Object object = session.getAttribute("cart");
 		if (object == null) {
 			ItemDTO itemsDTO = new ItemDTO();
 			itemsDTO.setProductDTO(productDTO);
 			itemsDTO.setQuantity(quantity);
 			itemsDTO.setUnitPrice(unitPrice);
+			itemsDTO.setDetailDTO(detailDTO);
 			Map<Long, ItemDTO> mapItem = new HashMap<Long, ItemDTO>();
 			mapItem.put(productId, itemsDTO);
 			session.setAttribute("cart", mapItem);
@@ -106,6 +112,7 @@ public class CartClientController {
 				itemsDTO.setProductDTO(productDTO);
 				itemsDTO.setQuantity(quantity);
 				itemsDTO.setUnitPrice(unitPrice);
+				itemsDTO.setDetailDTO(detailDTO);
 				mapItem.put(productId, itemsDTO);
 			} else {
 				ItemDTO itemsDTO = mapItem.get(productId);

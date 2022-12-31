@@ -41,8 +41,8 @@ public class SearchProductClientController {
 			pricing = "default";
 		}
 		
-		
 		long categoryId = 1;
+		int colorId = 0;
 		if(request.getParameter("categoryId") != null) {
 			categoryId = Long.parseLong(request.getParameter("categoryId"));
 		}
@@ -55,14 +55,18 @@ public class SearchProductClientController {
 			pageIndex = Integer.parseInt(request.getParameter("pageIndex"));
 		}
 		
+		if (request.getParameter("colorId") != null) {
+			colorId = Integer.parseInt(request.getParameter("colorId"));
+		}
+		
 		int totalPage = 0;
-		int count = productService.countBySearch(categoryId, pricing, priceFrom, priceTo, text);
+		int count = productService.countBySearch(categoryId, pricing, priceFrom, priceTo, text,colorId);
 		if (count % pageSize == 0) {
 			totalPage = count / pageSize;
 		} else {
 			totalPage = count / pageSize + 1;
 		}
-
+		request.setAttribute("colorId",colorId);
 		request.setAttribute("pageSize", pageSize);
 		request.setAttribute("pageIndex", pageIndex);
 		request.setAttribute("text", text);
@@ -70,7 +74,7 @@ public class SearchProductClientController {
 		request.setAttribute("pricing", pricing);
 		request.setAttribute("totalPage", totalPage);
 		request.setAttribute("categoryId", categoryId);
-		request.setAttribute("products", productService.search(categoryId, pricing, priceFrom, priceTo, sort, text, pageIndex, pageSize));
+		request.setAttribute("products", productService.search(categoryId, pricing, priceFrom, priceTo, sort, text, pageIndex, pageSize,colorId));
 		return "client/product_grid";
 	}
 }

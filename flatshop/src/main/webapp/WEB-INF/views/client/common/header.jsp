@@ -48,6 +48,7 @@
 								</marquee>
 							</div>
 							<div class="col-md-3">
+							
 								<c:if test="${sessionScope.user == null}">
 									<ul class="usermenu">
 										<li><a href="../login" class="log"><s:message code="login.name"/></a></li>
@@ -75,6 +76,7 @@
 					<div class="clearfix"></div>
 					<div class="header_bottom">
 						<ul class="option">
+						
 							<li id="search" class="search">
 								<form action="search" method="get">
 									<input class="search-submit" type="submit" value=""><input
@@ -91,6 +93,7 @@
                            </li>
                             -->
 						</ul>
+						
 						<div class="navbar-header">
 							<button type="button" class="navbar-toggle"
 								data-toggle="collapse" data-target=".navbar-collapse">
@@ -109,6 +112,7 @@
 								</c:forEach>
 							</ul>
 						</div>
+						
 					</div>
 				</div>
 			</div>

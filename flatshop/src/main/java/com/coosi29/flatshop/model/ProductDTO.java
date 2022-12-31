@@ -1,4 +1,6 @@
 package com.coosi29.flatshop.model;
+import com.coosi29.flatshop.entity.*;
+import java.util.List;
 
 public class ProductDTO {
 
@@ -10,6 +12,7 @@ public class ProductDTO {
 	private String image;
 	private CategoryDTO categoryDTO;
 	private SaleDTO saleDTO;
+	List<ProductDetailDTO> productdetail;
 	
 	
 	public ProductDTO() {

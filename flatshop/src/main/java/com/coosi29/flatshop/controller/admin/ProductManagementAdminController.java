@@ -28,7 +28,7 @@ import com.coosi29.flatshop.service.SaleService;
 @Controller
 @RequestMapping(value = "/admin")
 public class ProductManagementAdminController {
-	
+	public long ID;
 	@Autowired
 	private ProductService productService;
 	
@@ -120,7 +120,7 @@ public class ProductManagementAdminController {
 			int lastIndex = originalFilename.lastIndexOf(".");
 			String ext = originalFilename.substring(lastIndex);
 			String avatarFilename = System.currentTimeMillis() + ext;
-			File newfile = new File("D:\\image_spring_boot" + avatarFilename);
+			File newfile = new File("D:\\image_spring_boot" + File.separator+ avatarFilename);
 			FileOutputStream fileOutputStream;
 			try {
 				fileOutputStream = new FileOutputStream(newfile);
@@ -135,7 +135,7 @@ public class ProductManagementAdminController {
 		}
 		
 		productService.insert(productDTO);
-		return "redirect:../admin/product-list";
+		return "redirect:../admin/productdetail-create";
 	}
 	
 	
@@ -183,7 +183,7 @@ public class ProductManagementAdminController {
 			int lastIndex = originalFilename.lastIndexOf(".");
 			String ext = originalFilename.substring(lastIndex);
 			String avatarFilename = System.currentTimeMillis() + ext;
-			File newfile = new File("D:\\image_spring_boot" + avatarFilename);
+			File newfile = new File("D:\\image_spring_boot" + File.separator+ avatarFilename);
 			FileOutputStream fileOutputStream;
 			try {
 				fileOutputStream = new FileOutputStream(newfile);

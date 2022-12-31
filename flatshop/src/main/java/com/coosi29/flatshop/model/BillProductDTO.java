@@ -6,20 +6,25 @@ public class BillProductDTO {
 	private float unitPrice;
 	private int quantity;
 	private ProductDTO productDTO;
+	private ProductDetailDTO producttailDTO;
 	private BillDTO billDTO;
 
 	public BillProductDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public BillProductDTO(long id, float unitPrice, int quantity, ProductDTO productDTO, BillDTO billDTO) {
+	
+	public BillProductDTO(long id, float unitPrice, int quantity, ProductDTO productDTO,
+			ProductDetailDTO producttailDTO, BillDTO billDTO) {
 		super();
 		this.id = id;
 		this.unitPrice = unitPrice;
 		this.quantity = quantity;
 		this.productDTO = productDTO;
+		this.producttailDTO = producttailDTO;
 		this.billDTO = billDTO;
 	}
+
 
 	public long getId() {
 		return id;
@@ -53,6 +58,14 @@ public class BillProductDTO {
 		this.productDTO = productDTO;
 	}
 
+	public ProductDetailDTO getProducttailDTO() {
+		return producttailDTO;
+	}
+
+	public void setProducttailDTO(ProductDetailDTO producttailDTO) {
+		this.producttailDTO = producttailDTO;
+	}
+
 	public BillDTO getBillDTO() {
 		return billDTO;
 	}
@@ -60,6 +73,8 @@ public class BillProductDTO {
 	public void setBillDTO(BillDTO billDTO) {
 		this.billDTO = billDTO;
 	}
+
+	
 
 	
 	

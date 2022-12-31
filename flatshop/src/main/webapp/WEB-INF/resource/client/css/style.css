@@ -1902,7 +1902,33 @@ form.newsletter input[type="submit"]:hover {
 	position: relative;
 	width: 100%;
 }
+.cosize {
+	float: left;
+	position: relative;
+	width: 100%;
+}
+.products-description .color {
+	float: left;
+	font-weight: 400;
+	width: auto;
+	font-size: 13px;
+	vertical-align: middle;
+}
 
+.products-description .color select {
+	margin-left: 30px;
+}
+.products-description .size select {
+	margin-left: 30px;
+}
+.products-description .size {
+	float:right;
+	margin-right:100px;
+	font-weight: 400;
+	width: auto;
+	font-size: 13px;
+	vertical-align: middle;
+}
 .products-description .qty {
 	float: left;
 	font-weight: 400;

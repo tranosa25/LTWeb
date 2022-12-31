@@ -2,6 +2,7 @@ package com.coosi29.flatshop.dao.impl;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 
 import org.hibernate.Criteria;
@@ -16,11 +17,11 @@ import com.coosi29.flatshop.entity.Product;
 
 @Repository
 @Transactional
-public class ProductDaoImpl implements ProductDao{
+public class ProductDaoImpl implements ProductDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	@Override
 	public void insert(Product product) {
 		sessionFactory.getCurrentSession().save(product);
@@ -35,7 +36,7 @@ public class ProductDaoImpl implements ProductDao{
 	public void delete(long productId) {
 		Product product = findById(productId);
 		sessionFactory.getCurrentSession().delete(product);
-		
+
 	}
 
 	@Override
@@ -46,7 +47,8 @@ public class ProductDaoImpl implements ProductDao{
 	@Override
 	public List<Product> findAll(int pageIndex, int pageSize) {
 		int first = pageIndex * pageSize;
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Product.class).setFirstResult(first).setMaxResults(pageSize);
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Product.class).setFirstResult(first)
+				.setMaxResults(pageSize);
 		return criteria.list();
 	}
 
@@ -59,6 +61,13 @@ public class ProductDaoImpl implements ProductDao{
 	}
 
 	@Override
+	public List<Product> findAllIdName() {
+		String sql = "SELECT p FROM Product p ";
+		Query query = sessionFactory.getCurrentSession().createQuery(sql);
+		return query.list();
+	}
+	
+	@Override
 	public int count() {
 		String sql = "SELECT COUNT(p) FROM Product p";
 		Query query = sessionFactory.getCurrentSession().createQuery(sql);
@@ -68,7 +77,7 @@ public class ProductDaoImpl implements ProductDao{
 
 	@Override
 	public int countByCategoryId(long categoryId) {
-		String sql = "SELECT COUNT(p) FROM Product p where p.category.categoryId = " + categoryId; 
+		String sql = "SELECT COUNT(p) FROM Product p where p.category.categoryId = " + categoryId;
 		Query query = sessionFactory.getCurrentSession().createQuery(sql);
 		long count = (long) query.uniqueResult();
 		return (int) count;
@@ -91,40 +100,54 @@ public class ProductDaoImpl implements ProductDao{
 	}
 
 	@Override
-	public List<Product> search(long categoryId, String pricing, float priceFrom, float priceTo, String sort, String text, int pageIndex,
-			int pageSize) {
-		String sql = "SELECT p FROM Product p WHERE p.category.categoryId = " + categoryId;
+	public List<Product> search(long categoryId, String pricing, float priceFrom, float priceTo, String sort,
+			String text, int pageIndex, int pageSize, int colorId) {
+		String sql = "SELECT p FROM Product_Detail pd left outer join pd.product p WHERE p.category.categoryId = " + categoryId;
+		try {
 		if (pricing != null && !pricing.equals("default") && !pricing.equals("")) {
-			sql += " and ((p.price - (p.price * p.sale.salePercent / 100)) >= " + priceFrom + " and (p.price - (p.price * p.sale.salePercent / 100)) <= " + priceTo + ")";
-		}
+			sql += " and ((p.price - (p.price * p.sale.salePercent / 100)) >= " + priceFrom
+					+ " and (p.price - (p.price * p.sale.salePercent / 100)) <= " + priceTo + ")";
+		}}catch (NoResultException nre) {}
 		
 		if (text != null) {
 			sql += " and p.productName like '%" + text + "%'";
 		}
-		
+
 		if (sort != null && !sort.equals("default")) {
 			sql += " ORDER BY (p.price - (p.price * p.sale.salePercent / 100)) " + sort;
 		}
-		
+		try {
+		if (colorId != 0) {
+			sql += "and pd.color.color_id = " + colorId;
+		}}catch (NoResultException nre) {}
 		int first = pageIndex * pageSize;
 		Query query = sessionFactory.getCurrentSession().createQuery(sql).setFirstResult(first).setMaxResults(pageSize);
 		return query.list();
-	}
+	
+		}
 
 	@Override
-	public int countBySearch(long categoryId, String pricing, float priceFrom, float priceTo, String text) {
-		String sql = "SELECT COUNT(p) FROM Product p where p.category.categoryId = " + categoryId; 
-		
-		if (pricing != null && !pricing.equals("default") && !pricing.equals("")) {
-			sql += " and ((p.price - (p.price * p.sale.salePercent / 100)) >= " + priceFrom + " and (p.price - (p.price * p.sale.salePercent / 100)) <= " + priceTo + ")";
+	public int countBySearch(long categoryId, String pricing, float priceFrom, float priceTo, String text,
+			int colorId) {
+		try {
+			String sql = "SELECT count(p) FROM Product_Detail pd left outer join pd.product p  where p.category.categoryId = "
+					+ categoryId;
+			if (pricing != null && !pricing.equals("default") && !pricing.equals("")) {
+				sql += " and ((p.price - (p.price * p.sale.salePercent / 100)) >= " + priceFrom
+						+ " and (p.price - (p.price * p.sale.salePercent / 100)) <= " + priceTo + ")";
+			}
+			if (text != null) {
+				sql += " and p.productName like '%" + text + "%'";
+			}
+			if (colorId != 0) {
+				sql += "and pd.color.color_id = " + colorId;
+			}
+			Query query = sessionFactory.getCurrentSession().createQuery(sql);
+			long count = (long) query.uniqueResult();
+			return (int) count;
+		} catch (NoResultException nre) {
+			return 0;
 		}
-		
-		if (text != null) {
-			sql += " and p.productName like '%" + text + "%'";
-		}
-		Query query = sessionFactory.getCurrentSession().createQuery(sql);
-		long count = (long) query.uniqueResult();
-		return (int) count;
 	}
 
 }

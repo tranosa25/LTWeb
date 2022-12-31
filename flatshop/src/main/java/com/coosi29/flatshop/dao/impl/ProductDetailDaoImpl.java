@@ -67,5 +67,12 @@ public class ProductDetailDaoImpl implements ProductDetailDao {
 		Query query = sessionFactory.getCurrentSession().createQuery(sql);
 		return query.list();
 	}
+	@Override
+	public Product_Detail findByDetailId(long detailId)
+	{
+		String sql = "SELECT pd FROM Product_Detail pd WHERE pd.detail_id = " + detailId;
+		Query query = sessionFactory.getCurrentSession().createQuery(sql);
+		return (Product_Detail)query.uniqueResult();
+	}
 	
 }

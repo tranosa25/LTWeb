@@ -16,8 +16,8 @@
 						<li><a href="home" class=""><i class="lnr lnr-home"></i> <span>Home</span></a></li>
 						<li><a href="user-list" class=""><i class="lnr lnr-users"></i> <span>User</span></a></li>
 						<li><a href="product-list" class=""><i class="lnr lnr-gift"></i> <span>Product</span></a></li>
-						<li><a href="productdetail-list" class=""><i class="lnr lnr lnr-dice"></i><span>Product Detail</span></a></li>
-						<li><a href="" class=""><i class="lnr lnr-store"></i> <span>Go to shop</span></a></li>
+						<!-- <li><a href="productdetail-list" class=""><i class="lnr lnr lnr-dice"></i><span>Product Detail</span></a></li>
+						<li><a href="" class=""><i class="lnr lnr-store"></i> <span>Go to shop</span></a></li> -->
 						<li><a href="" class=""><i class="lnr lnr-cog"></i> <span>Setting</span></a></li>
 					</ul>
 				</nav>

@@ -116,5 +116,21 @@ public class ProductDetailServiceimpl implements ProductDetailService{
 		}
 		return productdetailDTOs;
 	}
+	
+	@Override
+	public ProductDetailDTO findByDetailId(long detailId)
+	{
+		Product_Detail details = detailDAO.findByDetailId(detailId);
+		
+			ProductDetailDTO detailDTO = new ProductDetailDTO();
+			detailDTO.setColorId(details.getColor().getColor_id());
+			detailDTO.setDate(details.getDate());
+			detailDTO.setDetailId(details.getDetail_id());
+			detailDTO.setProductId(details.getProduct().getProductId());
+			detailDTO.setSizeId(details.getSize().getSize_id());
+		
+		return detailDTO;
+		
+	}
 
 }

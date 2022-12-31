@@ -33,6 +33,8 @@ public interface ProductDetailDao {
 	int count();
 
 	List<Product_Detail> findAllByCategoryId(long productId);
+
+	Product_Detail findByDetailId(long detailId);
 	
 	//int countBySearch(long categoryId, String pricing, float priceFrom, float priceTo, String text, int colorId);
 }

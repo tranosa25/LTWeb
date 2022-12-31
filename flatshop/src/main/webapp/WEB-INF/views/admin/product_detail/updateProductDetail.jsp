@@ -57,38 +57,35 @@
 							<a class="btn btn-warning" href="product-list"
 								style="background-color: #D9534F; padding: 2px 10px; text-decoration: none; border: none; margin-right: 10px; height: 25px;">Back</a>
 						</div>
-						<form action="product-update" method="post"
+						<form action="productdetail-update" method="post"
 							enctype="multipart/form-data">
 							<div class="row"
 								style="display: flex; justify-content: space-between;">
 								<table style="margin: auto; margin-left: 60px;" class="col-md-6">
-									<tr>
 
-										<th>Category:</th>
-										<td><select name="categoryId">
-												<c:forEach items="${categories}" var="category">
+									<tr>
+										<th>Product Color:</th>
+										<td><select name="colorId">
+												<c:forEach items="${color}" var="colors">
 													<option
-														<c:if test="${product.categoryDTO.categoryId == category.categoryId}">
+														<c:if test="${detail.getColorId() == colors.getColorId()}">
 															selected="selected"
 														</c:if>
-														value="${category.categoryId}">${category.categoryName}</option>
+														value="${colors.getColorId()}">${colors.getColor()}</option>
 												</c:forEach>
 										</select></td>
 									</tr>
 									<tr>
-										<th>Product name:</th>
-										<td><input type="text" class="form-control"
-											required="required" style="height: 30px;"
-											placeholder="Enter product name..." name="productName"
-											value="${product.productName}" />
-											<input type="hidden" name="productId" value="${product.productId}">
-											</td>
-									</tr>
-									<tr>
-										<th>Description:</th>
-										<td><textarea required="required" class="form-control"
-												placeholder="Enter product description..." rows="4"
-												name="description">${product.description}</textarea></td>
+										<th>Product Size:</th>
+										<td><select name="sizeId">
+												<c:forEach items="${size}" var="sizes">
+													<option
+														<c:if test="${detail.getSizeId() == sizes.getSizeId()}">
+															selected="selected"
+														</c:if>
+														value="${sizes.getSizeId()}">${sizes.getSize()}</option>
+												</c:forEach>
+										</select></td>
 									</tr>
 									<tr>
 										<th></th>
@@ -102,40 +99,19 @@
 								<table
 									style="margin: auto; margin-left: 50px; margin-right: -40px;"
 									class="col-md-6">
-									<tr>
-										<th>Price:</th>
-										<td><input type="text" class="form-control" 
-											style="height: 30px; width: 230px;"
-											placeholder="$${product.price}0" name="newPrice" />
-											<input type="hidden" name="oldPrice" value="${product.price}">
-											</td>
-									</tr>
+
 									<tr>
 										<th>Quantity:</th>
 										<td><input type="text" class="form-control"
 											required="required" style="height: 30px; width: 230px;"
-											placeholder="0" name="quantity" value="${product.quantity}" /></td>
+											placeholder="${detail.getQuantity()}" name="quantity" /></td>
 									</tr>
 									<tr>
 										<th>Image:</th>
-										<td><img src="../download?image=${product.image}"
-											style="width: 20%; margin-top: -20px;"> <input
-											type="hidden" name="image" value="${product.image}" /> 
-											<input type="file" name="imageFile" />
-											<input type="hidden" name="image" value="${product.image}">
+										<td><input type="file" required="required"
+											name="imageFile" />${detail.getImage()}</td>
 									</tr>
-									<tr>
-										<th>Sale code:</th>
-										<td><select name="saleId">
-												<c:forEach items="${sales}" var="sale">
-													<option 
-													<c:if test="${product.saleDTO.saleId == sale.saleId}">
-														selected="selected"
-													</c:if>
-													value="${sale.saleId}">${sale.salePercent}%</option>
-												</c:forEach>
-										</select> <a style="margin-left: 10px;" href="">More sale code</a></td>
-									</tr>
+
 									<tr>
 										<th></th>
 										<td>

@@ -19,5 +19,7 @@ public interface ProductDetailService {
 	int count();
 
 	List<ProductDetailDTO> findAllByproductId(long productId);
+
+	ProductDetailDTO findByDetailId(long detailId);
 	
 }

@@ -42,19 +42,10 @@ public class Product_DetailManagementAdminController {
 	@GetMapping(value = "/productdetail-list")
 	public String findAll(HttpServletRequest request, @RequestParam(name = "productId") long prouctId,
 			@RequestParam(name = "productName") String prouctName) {
-		int pageIndex = 0;
-		int pageSize = 5;
-		/*
-		 * if (request.getParameter("pageIndex") != null) { pageIndex =
-		 * Integer.parseInt(request.getParameter("pageIndex")); } int totalPage = 0; int
-		 * count = detailService.count(); if (count % pageSize == 0) { totalPage = count
-		 * / pageSize; } else { totalPage = count / pageSize + 1; }
-		 */
-
+		request.setAttribute("color", colorService.findAll());
+		request.setAttribute("size", sizeService.findAll());
 		request.setAttribute("default", "default");
 		request.setAttribute("ProductName", prouctName);
-		// request.setAttribute("pageIndex", pageIndex);
-		// request.setAttribute("totalPage", totalPage);
 		request.setAttribute("details", detailService.findAllByproductId(prouctId));
 		return "admin/product_detail/listProductDetail";
 	}
@@ -108,50 +99,32 @@ public class Product_DetailManagementAdminController {
 	// Update product
 
 	@GetMapping(value = "/productdetail-update")
-	public String update(HttpServletRequest request, @RequestParam(name = "productId") long productId) {
-		request.setAttribute("product", productService.findById(productId));
-		request.setAttribute("sales", saleService.findAll());
-		request.setAttribute("categories", categoryService.findAll());
-		return "admin/product/updateProduct";
+	public String update(HttpServletRequest request, @RequestParam(name = "detailId") long detailId) {
+		request.setAttribute("detail", detailService.findByDetailId(detailId));
+		request.setAttribute("color", colorService.findAll());
+		request.setAttribute("size", sizeService.findAll());
+		return "admin/product_detail/updateProductDetail";
 	}
 
 	@PostMapping(value = "/productdetail-update")
-	public String update(HttpServletRequest request,
-
-			@RequestParam(name = "newPrice", required = false) String newPrice,
-
-			@RequestParam(name = "imageFile", required = false) MultipartFile imageFile) {
-		long productId = Long.parseLong(request.getParameter("productId"));
-		long categoryId = Long.parseLong(request.getParameter("categoryId"));
-		float oldprice = Float.parseFloat(request.getParameter("oldPrice"));
-		String productName = request.getParameter("productName");
-		String description = request.getParameter("description");
+	public String update(HttpServletRequest request,@RequestParam(name = "imageFile", required = false) MultipartFile imageFile) {
+		//long productId = Long.parseLong(request.getParameter("pId"));
+		//long productId = Long.parseLong(request.getParameter("productId"));
+		int color = Integer.parseInt(request.getParameter("colorId"));
+		int size = Integer.parseInt(request.getParameter("sizeId"));
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
-		String image = request.getParameter("image");
-		String saleId = request.getParameter("saleId");
-
-		SaleDTO saleDTO = new SaleDTO();
-		saleDTO.setSaleId(saleId);
-		CategoryDTO categoryDTO = new CategoryDTO();
-		categoryDTO.setCategoryId(categoryId);
-		ProductDTO productDTO = new ProductDTO();
-		productDTO.setProductId(productId);
-		productDTO.setSaleDTO(saleDTO);
-		productDTO.setCategoryDTO(categoryDTO);
-		productDTO.setProductName(productName);
-		productDTO.setDescription(description);
-		productDTO.setQuantity(quantity);
-		if (newPrice == null || newPrice.equals("")) {
-			productDTO.setPrice(oldprice);
-		} else {
-			productDTO.setPrice(Float.parseFloat(newPrice));
-		}
+		String image = request.getParameter("image"); 
+		
+		ProductDetailDTO productdetailDTO = new ProductDetailDTO();
+	    productdetailDTO.setColorId(color);
+	    productdetailDTO.setQuantity(quantity);
+	    productdetailDTO.setSizeId(size);
 		if (imageFile != null && imageFile.getSize() > 0) {
 			String originalFilename = imageFile.getOriginalFilename();
 			int lastIndex = originalFilename.lastIndexOf(".");
 			String ext = originalFilename.substring(lastIndex);
 			String avatarFilename = System.currentTimeMillis() + ext;
-			File newfile = new File("D:\\image_spring_boot" + avatarFilename);
+			File newfile = new File("D:\\image_spring_boot" +File.separator+ avatarFilename);
 			FileOutputStream fileOutputStream;
 			try {
 				fileOutputStream = new FileOutputStream(newfile);
@@ -162,13 +135,13 @@ public class Product_DetailManagementAdminController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			productDTO.setImage(avatarFilename);
+			productdetailDTO.setImage(avatarFilename);
 		} else {
-			productDTO.setImage(image);
+			productdetailDTO.setImage(image);
 		}
 
-		productService.update(productDTO);
-		return "redirect:/admin/product-list";
+		detailService.update(productdetailDTO);
+		return "redirect:/admin/productdetail-list";
 	}
 
 	// Delete Product

@@ -60,16 +60,15 @@
 													<p class="demo-button">
 														<a class="btn btn-default" href="product-list"
 															style="padding: 4px 8px; text-decoration: none; border: none; box-shadow: 2px 2px gray; font-weight: bold;">All
-															Product</a> <a class="btn btn-success"
-															href="product-list-by-category?categoryId=3"
-															style="background-color: #41B314; padding: 4px 8px; text-decoration: none; border: none; margin-left: 7px;">Vans
-															ERA</a> <a class="btn btn-info"
+															Product</a> <a class="btn btn-primary"
+															href="product-list-by-category?categoryId=1"
+															style="background-color: #00AAFF; padding: 4px 8px; text-decoration: none; border: none; margin-left: 5px;">Shoes</a> <a class="btn btn-info"
 															href="product-list-by-category?categoryId=2"
 															style="background-color: #E4CB10; padding: 4px 8px; text-decoration: none; border: none; margin-left: 5px;">Vans
-															classic</a> <a class="btn btn-primary"
-															href="product-list-by-category?categoryId=1"
-															style="background-color: #00AAFF; padding: 4px 8px; text-decoration: none; border: none; margin-left: 5px;">Vans
-															authentic</a> <a class="btn btn-warning"
+															classic</a> <a class="btn btn-success"
+															href="product-list-by-category?categoryId=3"
+															style="background-color: #41B314; padding: 4px 8px; text-decoration: none; border: none; margin-left: 7px;">Vans
+															ERA</a> <a class="btn btn-warning"
 															href="product-list-by-category?categoryId=4"
 															style="background-color: #D9534F; padding: 4px 8px; text-decoration: none; border: none; margin-left: 5px;">Vans
 															old skool</a> <a class="btn btn-danger"
@@ -131,12 +130,12 @@
 																		style="width: 70%;"
 																		src="../download?image=${product.image}"></td>
 																	<td style="vertical-align: middle;">${product.description}</td>
-																	<td style="vertical-align: middle;"><a
+																	<td style="vertical-align: middle; width: 5%;"><a
 																		href="product-update?productId=${product.productId}">
 																			<span class="label label-warning"
 																			style="font-size: 15px;">Update</span>
 																	</a></td>
-																	<td style="vertical-align: middle;"><a
+																	<td style="vertical-align: middle; width: 5%;"><a
 																		href="productdetail-list?productId=${product.productId}&productName=${product.productName}">
 																			<span class="label label-warning"
 																			style="font-size: 15px;">Detail</span>

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Dashboard | Klorofil - Free Bootstrap Dashboard Template</title>
+<title>Admin Dashboard</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport"
@@ -62,7 +62,7 @@
 													<table class="table" style="margin: auto;">
 														<thead>
 															<tr>
-																
+
 																<th>ID</th>
 																<th>Product Name</th>
 																<th>Color</th>
@@ -71,36 +71,44 @@
 																<th>Date</th>
 																<th style="width: 10%;">Image</th>
 																<th>Edit</th>
+																<th>Delete</th>
 															</tr>
 														</thead>
 														<tbody>
 															<c:forEach items="${details}" var="detail">
 																<tr>
-																	
+
 																	<td style="vertical-align: middle;">${detail.getDetailId()}</td>
 																	<td style="vertical-align: middle;">${ProductName}</td>
-																	<td style="vertical-align: middle;">
-																	<c:if test="${detail.getColorId() == '1'}">Red</c:if>
-																	<c:if test="${detail.getColorId() == '2'}">White</c:if>
-																	<c:if test="${detail.getColorId() == '3'}">Black</c:if>
-																	</td>
-																	<td style="vertical-align: middle;">
-																	<c:if test="${detail.getSizeId() == '1'}">S</c:if>
-																	<c:if test="${detail.getSizeId() == '2'}">M</c:if>
-																	<c:if test="${detail.getSizeId() == '3'}">L</c:if>
-																	<c:if test="${detail.getSizeId() == '4'}">XL</c:if>
-																	<c:if test="${detail.getSizeId() == '5'}">XXL</c:if>
-																	</td>
+																	<td style="vertical-align: middle;"><c:forEach
+																			items="${color}" var="colors">
+																			<c:if
+																				test="${detail.getColorId() == colors.getColorId()}">
+																			  ${colors.getColor()}
+																			</c:if>
+																		</c:forEach></td>
+																	<td style="vertical-align: middle;"><c:forEach
+																			items="${size}" var="sizes">
+																			<c:if
+																				test="${detail.getSizeId() == sizes.getSizeId()}">
+																			  ${sizes.getSize()}
+																			</c:if>
+																		</c:forEach></td>
 																	<td style="vertical-align: middle;">${detail.getQuantity()}</td>
 																	<td style="vertical-align: middle;">${detail.getDate()}</td>
-																	<td style="vertical-align: middle;">
-																	<img
-																		style="width: 70%;" src="../download?image=${detail.getImage()}"></td>
-																	<td style="vertical-align: middle;"><a href="productdetail-list?productId=${detail.getProductId()}&productName=${ProductName}">
+																	<td style="vertical-align: middle;"><img
+																		style="width: 70%;"
+																		src="../download?image=${detail.getImage()}"></td>
+																	<td style="vertical-align: middle;width:5%;"><a
+																		href="productdetail-update?detailId=${detail.getDetailId()}">
 																			<span class="label label-warning"
 																			style="font-size: 15px;">Update</span>
 																	</a></td>
-																	<input type=hidden name="ID" value=${detail.getProductId()}/>
+																	<td style="vertical-align: middle;width:5%;"><a
+																		href="productdetail-delete?detailId=${detail.getDetailId()}">
+																			<span class="label label-warning"
+																			style="font-size: 15px;">Delete</span>
+																	</a></td>
 																</tr>
 															</c:forEach>
 														</tbody>
@@ -108,18 +116,7 @@
 												</div>
 											</div>
 											<nav aria-label="Page navigation example"
-												style="margin-top: -30px;">
-											<%-- 	<ul class="pagination">
-													<c:forEach begin="0" end="${totalPage-1}" var="i">
-													<li class="page-item">
-													<a class="page-link" href="productdetail-list?pageIndex=${i}&productId=${ID}"
-														<c:if test="${pageIndex == i}">
-														style="background-color: #F0AD4E; color: white;"
-														</c:if>
-														>${i+1}</a></li>
-													</c:forEach>
-												</ul> --%>
-											</nav>
+												style="margin-top: -30px;"></nav>
 										</div>
 										<div id="headline-chart" class="ct-chart"></div>
 									</div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 04, 2022 lúc 05:40 AM
+-- Thời gian đã tạo: Th1 01, 2023 lúc 02:19 PM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 7.4.29
 
@@ -37,12 +37,11 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`category_id`, `category_name`) VALUES
-(1, 'Nike'),
-(2, 'Adidas'),
-(3, 'Puma'),
-(4, 'Kappa'),
-(5, 'Fila'),
-(6, 'Coolmate');
+(1, 'Football'),
+(2, 'Accessories'),
+(3, 'Basketball'),
+(4, 'Shoes'),
+(6, 'Badminton');
 
 -- --------------------------------------------------------
 
@@ -55,57 +54,19 @@ CREATE TABLE `item` (
   `product_id` bigint(20) NOT NULL,
   `unit_price` float NOT NULL,
   `quantity` int(11) NOT NULL,
-  `order_id` bigint(20) NOT NULL
+  `order_id` bigint(20) NOT NULL,
+  `detail_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Đang đổ dữ liệu cho bảng `item`
 --
 
-INSERT INTO `item` (`item_id`, `product_id`, `unit_price`, `quantity`, `order_id`) VALUES
-(9, 51, 77, 1, 14),
-(10, 88, 50, 1, 14),
-(11, 49, 52, 2, 15),
-(12, 50, 54, 1, 15),
-(13, 88, 50, 3, 15),
-(14, 89, 48, 1, 15),
-(15, 51, 77, 3, 16),
-(16, 47, 60, 1, 16),
-(17, 49, 52, 2, 17),
-(18, 58, 59, 1, 17),
-(19, 49, 52, 2, 21),
-(20, 60, 68, 1, 22),
-(21, 50, 54, 1, 23),
-(22, 88, 49, 3, 23),
-(23, 89, 48, 2, 23),
-(24, 51, 76, 2, 24),
-(25, 52, 64, 1, 24),
-(26, 58, 59, 5, 25),
-(27, 47, 60, 3, 25),
-(28, 50, 54, 1, 26),
-(29, 89, 48, 2, 26),
-(30, 64, 71, 1, 27),
-(31, 51, 76, 4, 27),
-(32, 77, 53, 1, 27),
-(33, 51, 76, 1, 28),
-(34, 47, 60, 3, 28),
-(35, 52, 64, 1, 29),
-(36, 47, 60, 1, 30),
-(37, 81, 42, 2, 31),
-(38, 60, 68, 1, 31),
-(39, 81, 42, 3, 32),
-(40, 98, 42, 1, 33),
-(41, 77, 53, 1, 33),
-(42, 49, 52, 3, 34),
-(43, 95, 44, 2, 34),
-(44, 98, 70, 5, 35),
-(45, 55, 67, 2, 35),
-(46, 72, 70, 3, 35),
-(47, 47, 60, 2, 36),
-(48, 51, 76, 1, 37),
-(49, 51, 76, 1, 38),
-(50, 60, 68, 1, 39),
-(51, 64, 71, 1, 40);
+INSERT INTO `item` (`item_id`, `product_id`, `unit_price`, `quantity`, `order_id`, `detail_id`) VALUES
+(9, 51, 77, 1, 14, 6),
+(11, 49, 52, 2, 15, 4),
+(12, 50, 54, 1, 15, 5),
+(53, 48, 60, 1, 48, 3);
 
 -- --------------------------------------------------------
 
@@ -146,10 +107,18 @@ INSERT INTO `order_user` (`order_id`, `buy_date`, `status`, `price_total`, `user
 (34, '2021-02-05 00:00:00', 'SUCCESS', 249, 40),
 (35, '2021-02-05 00:00:00', 'SUCCESS', 699, 95),
 (36, '2021-02-05 00:00:00', 'SUCCESS', 125, 95),
-(37, '2021-02-05 00:00:00', 'PENDING', 81, 76),
-(38, '2021-02-05 00:00:00', 'PENDING', 81, 70),
-(39, '2021-02-05 00:00:00', 'PENDING', 73, 40),
-(40, '2022-12-02 00:00:00', 'PENDING', 76, 106);
+(37, '2021-02-05 00:00:00', 'SUCCESS', 81, 76),
+(38, '2021-02-05 00:00:00', 'SUCCESS', 81, 70),
+(39, '2021-02-05 00:00:00', 'SUCCESS', 73, 40),
+(40, '2022-12-02 00:00:00', 'SUCCESS', 76, 106),
+(41, '2022-12-16 00:00:00', 'SUCCESS', 121, 31),
+(42, '2022-12-21 00:00:00', 'SUCCESS', 67, 106),
+(43, '2022-12-21 00:00:00', 'SUCCESS', 67, 106),
+(44, '2022-12-30 00:00:00', 'PENDING', 125, 106),
+(45, '2022-12-30 00:00:00', 'PENDING', 125, 106),
+(46, '2022-12-30 00:00:00', 'SUCCESS', 65, 106),
+(47, '2022-12-30 00:00:00', 'SUCCESS', 65, 106),
+(48, '2022-12-30 00:00:00', 'SUCCESS', 65, 106);
 
 -- --------------------------------------------------------
 
@@ -161,7 +130,7 @@ CREATE TABLE `product` (
   `product_id` bigint(20) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
-  `price` float NOT NULL,
+  `price` decimal(12,0) NOT NULL,
   `product_name` varchar(255) DEFAULT NULL,
   `quantity` int(11) NOT NULL,
   `category_id` int(11) DEFAULT NULL,
@@ -173,63 +142,136 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `description`, `image`, `price`, `product_name`, `quantity`, `category_id`, `sale_id`) VALUES
-(44, 'Vans Authentic 44 Dx Classic White - Anaheim Factory', '1669986272283.jpg', 65, 'Vans authentic', 150, 1, 's10pc'),
-(47, 'Vans Dallas Clayton Authentic Rainbow True -  White', '1608622024114.jpg', 67, 'Vans authentic', 55, 1, 's10pc'),
-(48, 'Vans Sk8 - Hi Label Mix', '1608622139500.jpg', 60, 'Vans old skool', 152, 4, 'default'),
-(49, 'Sneakers Vans Authentic Black White', '1609034076692.jpg', 65, 'Vans old skool', 150, 4, 's20pc'),
-(50, 'Vans old skool classic black/white', '1608622277960.jpg', 60, 'Vans old skool', 199, 4, 's10pc'),
-(51, 'Vans Sk8-Hi Deck Club', '1608622647893.jpg', 85, 'Vans SK8', 120, 5, 's10pc'),
-(52, 'Vans Sk8 Hi Black White', '1608622710798.png', 80, 'Vans SK8', 345, 5, 's20pc'),
-(53, 'Vans Sk8 Hi Navy White\r\n', '1608622786673.jpg', 78, 'Vans SK8', 167, 5, 'default'),
-(54, 'Vans Sk8 Hi Navy White\r\n', '1608622841439.png', 89, 'Vans SK8', 313, 5, 's30pc'),
-(55, 'Vans Old Skool Flash Skulls', '1608622964916.jpg', 67, 'Vans old skool', 467, 4, 'default'),
-(56, 'Vans Style 36 Crew Checkerboard', '1608623182252.jpg', 78, 'Vans old skool', 276, 4, 's10pc'),
-(57, 'Vans Old Skool 36 DX Anaheim Factory', '1612540190989.jpg', 65, 'Vans old skool', 198, 4, 's20pc'),
-(58, 'Vans Authentic Red White\r\n', '1608623362414.png', 59, 'Vans authentic', 435, 1, 'default'),
-(59, 'Vans Sk8-Hi Flame Reissue', '1608623531124.jpg', 70, 'Vans SK8', 365, 5, 's30pc'),
-(60, ' Vans Sk8-Hi DIY Tapered White', '1608623614207.png', 85, 'Vans SK8', 423, 5, 's20pc'),
-(61, 'Vans Sk8-Hi DIY Tapered Black', '1608623670293.jpg', 59, 'Vans old skool', 531, 4, 's10pc'),
-(62, 'Vans Sk8-Hi Flame Reissue', '1608623745484.jpg', 79, 'Vans SK8', 484, 5, 'default'),
-(63, '\r\nGiày Vans SK8-Hi Alien Ghosts', '1608623803283.png', 79, 'Vans SK8', 567, 5, 's30pc'),
-(64, '\r\nGiày Vans SK8 - Hi 38 DX Anaheim Factory', '1608623863531.jpg', 89, 'Vans SK8', 462, 5, 's20pc'),
-(65, 'Vans SK8 - Hi 38 DX Anaheim Factory', '1608624027198.jpg', 69, 'Vans SK8', 352, 5, 's10pc'),
-(66, 'Vans Sk8-Hi DIY Tapered White', '1612268137270.jpg', 69, 'Vans old skool', 535, 4, 's40pc'),
-(67, 'Vans Old Skool Off The Wall Sidewall True Navy', '1608624884611.png', 59, 'Vans old skool', 215, 4, 's30pc'),
-(68, 'Vans Authentic Black White', '1608624944384.jpg', 65, 'Vans old skool', 453, 4, 's20pc'),
-(69, 'Vans Authentic 44 Dx Checkerbroad', '1608625004288.jpg', 69, 'Vans old skool', 379, 4, 's40pc'),
-(70, 'Vans Old Skool 36 DX Anaheim Factory', '1608625060270.jpg', 60, 'Vans old skool', 265, 4, 's30pc'),
-(71, '\r\nVans Vault Authentic Chili Pepper - Ship US', '1608774008706.jpg', 65, 'Vans authentic', 343, 1, 's20pc'),
-(72, 'Vans Era Patchwork Multi Color', '1608774152453.jpg', 78, 'Vans authentic', 547, 1, 's10pc'),
-(73, 'Vans Authentic Caro Black White', '1608774264295.jpg', 60, 'Vans authentic', 743, 1, 's20pc'),
-(74, 'Vans Vault OG Authentic LX Black White - Ship US', '1608774321256.jpg', 65, 'Vans authentic', 296, 1, 'default'),
-(75, 'Vans Vault Authentic Chili Pepper - Ship US', '1608774363405.jpg', 60, 'Vans authentic', 343, 1, 's10pc'),
-(77, 'Vans Moma Classic Slip On', '1609034545320.png', 59, 'Vans slip-on', 834, 6, 's10pc'),
-(78, 'Vans Slip-On Custom Culture Along with the Gods', '1609034608943.png', 56, 'Vans slip-on', 783, 6, 's20pc'),
-(79, 'Vans Slip-On Alien Ghosts', '1609034653526.png', 45, 'Vans slip-on', 673, 6, 'default'),
-(80, 'Vans Slip-On Anaheim Factory Checkerboard', '1609034696789.jpg', 49, 'Vans slip-on', 348, 6, 's20pc'),
-(81, 'Vans Slip-On Mix Checker Chili Pepper', '1609034733814.jpg', 78, 'Vans slip-on', 934, 6, 's10pc'),
-(82, 'Vans Slip-On Stickers Mash Up', '1609034816715.jpg', 50, 'Vans slip-on', 582, 6, 's10pc'),
-(83, 'Vans Slip-On Anaheim Factory Checkerboard', '1609034871405.jpg', 50, 'Vans slip-on', 563, 6, 's20pc'),
-(84, 'Vans Slip-On Label Mix', '1609034923703.jpg', 55, 'Vans slip-on', 328, 6, 's30pc'),
-(85, 'Vans Slip-On Mix Checker Chili Pepper', '1609034970946.jpg', 49, 'Vans slip-on', 921, 6, 's10pc'),
-(86, 'Vans Slip-on Black Red F196 Checkerboard', '1609035021120.jpg', 59, 'Vans slip-on', 445, 6, 's20pc'),
-(87, 'Vans Slip-On Mismatch', '1609035081382.jpg', 60, 'Vans slip-on', 562, 6, 's20pc'),
-(88, 'Vans Era Forgotten Bones', '1609035204723.jpg', 78, 'Vans ERA', 765, 3, 's10pc'),
-(89, 'Vans Era Lady Vans', '1609035242491.jpg', 60, 'Vans ERA', 452, 3, 's20pc'),
-(90, 'Vans Era \"Get The Real\" Racing Red', '1609035287852.jpg', 45, 'Vans ERA', 293, 3, 's20pc'),
-(91, 'Vans Era Deboss Checkerboard', '1609035321871.jpg', 50, 'Vans ERA', 546, 3, 's30pc'),
-(92, 'Vans Era Comfycush Black', '1609035380193.jpg', 50, 'Vans ERA', 834, 3, 's10pc'),
-(93, 'Vans Era Checkerboard Marshmallow', '1609035436770.jpg', 59, 'Vans ERA', 453, 3, 's20pc'),
-(94, 'Checkerboard Classic Better Seller', '1609036735269.png', 60, 'Vans classic', 456, 2, 's10pc'),
-(95, 'Checkerboard Classic Better Seller', '1609036754525.png', 55, 'Vans classic', 738, 2, 's20pc'),
-(96, 'Checkerboard Classic Better Seller', '1609036772150.png', 49, 'Vans classic', 982, 2, 's10pc'),
-(97, 'Checkerboard Classic Better Seller', '1609036791385.png', 59, 'Vans classic', 213, 2, 's30pc'),
-(98, 'Checkerboard Classic Better Seller', '1609036821201.png', 78, 'Vans classic', 573, 2, 's10pc'),
-(99, 'Checkerboard Classic Better Seller', '1609036841790.jpg', 59, 'Vans classic', 837, 2, 's30pc'),
-(100, 'Checkerboard Classic Better Seller', '1609036892365.jpg', 60, 'Vans classic', 458, 2, 's30pc'),
-(101, 'Checkerboard Classic Better Seller', '1609036918234.png', 49, 'Vans classic', 635, 2, 's10pc'),
-(107, 'Checkerboard Classic Better Seller', '1612540248195.jpg', 64, 'Vans classic', 120, 2, 's30pc'),
-(108, 'ddddd', '1670074751913.jpg', 20, 'sang', 23, 2, 'default');
+(44, ' KHÔNG NH&#258;N  KHÔNG XÙ  KHÔNG PHAI\r\n\r\n.Th&#7845;m hút m&#7891; hôi c&#7921;c t&#7889;t', '1672556165892.jpg', '179', 'CLB Tottenham Hotspur BD040', 20, 1, 's10pc'),
+(47, ' Th&#7845;m hút m&#7891; hôi c&#7921;c t&#7889;t\r\n. Thi&#7871;t k&#7871; m&#7841;nh m&#7869;, hi&#7879;n &#273;&#7841;i', '1672556506783.png', '179', 'CLB Liverpool BD199', 20, 1, 's10pc'),
+(48, ' KHÔNG NH&#258;N  KHÔNG XÙ  KHÔNG PHAI\r\n. Th&#7845;m hút m&#7891; hôi c&#7921;c t&#7889;t', '1672556358617.jpg', '179', 'CLB MU BD739', 152, 1, 's10pc'),
+(49, 'ÁO &#272;Á BANH M&#7863;c thoáng, mát, in s&#7855;c nét, không bong tróc theo tiêu chu&#7849;n &#273;&#7891; xu&#7845;t kh&#7849;u', '1672556630651.jpg', '179', 'CLB Juventus BD753', 20, 1, 's10pc'),
+(50, 'QU&#7846;N ÁO BÓNG &#272;Á ch&#7845;t li&#7879;u MÈ nh&#7853;p kh&#7849;u tr&#7921;c ti&#7871;p Châu Âu cao c&#7845;p theo tiêu chu&#7849;n &#273;&#7891; bóng &#273;á chuyên nghi&#7879;p', '1672556721639.jpg', '179', 'CLB LIVERPOOL BD755', 20, 1, 's10pc'),
+(51, ' Th&#7845;m hút m&#7891; hôi c&#7921;c t&#7889;t\r\n.Thi&#7871;t k&#7871; m&#7841;nh m&#7869;, hi&#7879;n &#273;&#7841;i', '1672556807801.jpg', '179', 'CLB MU BD608', 23, 1, 's10pc'),
+(52, 'V&#7843;i mè châu âu\r\nHàng thun l&#7841;nh Vi&#7879;t Nam ch&#7845;t l&#432;&#7907;ng cao, m&#7851;u mã &#273;a d&#7841;ng\r\nCh&#7845;t li&#7879;u mè th&#7875; thao cho ch&#7845;t v&#7843;i s&#7901; m&#7883;n tay, siêu nh&#7865;, co dãn t&#7889;t.', '1672556872777.png', '179', 'CLB Tottenham Hotspur BD055', 25, 1, 's10pc'),
+(71, ' KHÔNG NH&#258;N  KHÔNG XÙ  KHÔNG PHAI\r\n.Th&#7845;m hút m&#7891; hôi c&#7921;c t&#7889;t\r\n.Thi&#7871;t k&#7871; m&#7841;nh m&#7869;, hi&#7879;n &#273;&#7841;i', '1672557017737.jpg', '199', 'CLB TD006', 30, 1, 's20pc'),
+(72, ' &#272;&#7890; BÓNG R&#7892; M&#7863;c thoáng, mát, in s&#7855;c nét, không bong tróc theo tiêu chu&#7849;n &#273;&#7891; xu&#7845;t kh&#7849;u', '1672557539865.jpg', '279', 'MAKAN BR015', 50, 3, 's10pc'),
+(73, ' KHÔNG NH&#258;N  KHÔNG XÙ  KHÔNG PHAI\r\n.Th&#7845;m hút m&#7891; hôi c&#7921;c t&#7889;t', '1672557619748.jpg', '60', 'MAKAN BR127', 50, 3, 's10pc'),
+(74, 'Vans Vault OG Authentic LX Black White - Ship US', '1672557674667.jpg', '279', 'MAKAN BR070', 50, 3, 'default'),
+(75, ' KHÔNG NH&#258;N  KHÔNG XÙ  KHÔNG PHAI\r\n.Th&#7845;m hút m&#7891; hôi c&#7921;c t&#7889;t', '1672557747406.jpg', '300', 'MAKAN BR064', 50, 3, 's20pc'),
+(77, ' KHÔNG NH&#258;N  KHÔNG XÙ  KHÔNG PHAI\r\n.Th&#7845;m hút m&#7891; hôi c&#7921;c t&#7889;t', '1672557799199.jpg', '300', 'MAKAN BR007', 50, 3, 's10pc'),
+(78, 'Vans Slip KHÔNG NH&#258;N  KHÔNG XÙ  KHÔNG PHAI\r\n.Th&#7845;m hút m&#7891; hôi c&#7921;c t&#7889;t-On Custom Culture Along with the Gods', '1672557847013.jpg', '350', 'MAKAN BR003', 50, 3, 's30pc'),
+(79, ' KHÔNG NH&#258;N  KHÔNG XÙ  KHÔNG PHAI\r\n.Th&#7845;m hút m&#7891; hôi c&#7921;c t&#7889;t', '1672558001158.jpg', '179', 'CL158', 50, 6, 's10pc'),
+(80, ' KHÔNG NH&#258;N  KHÔNG XÙ  KHÔNG PHAI\r\n.Th&#7845;m hút m&#7891; hôi c&#7921;c t&#7889;t', '1672558109796.jpg', '189', 'CL 232', 50, 6, 's10pc'),
+(81, ' KHÔNG NH&#258;N  KHÔNG XÙ  KHÔNG PHAI\r\n.Th&#7845;m hút m&#7891; hôi c&#7921;c t&#7889;t', '1672558139752.jpg', '199', 'CL 454', 50, 6, 's10pc'),
+(90, ' KHÔNG NH&#258;N  KHÔNG XÙ  KHÔNG PHAI\r\n.Th&#7845;m hút m&#7891; hôi c&#7921;c t&#7889;t', '1672558188003.jpg', '189', 'CL 792', 50, 6, 's20pc'),
+(91, 'Giày Nike Air Max SC Lea mang nét huy&#7873;n tho&#7841;i c&#7911;a Nike, v&#7899;i b&#7897; &#273;&#7879;m Air Max tr&#7913; danh &#273;ây là m&#7851;u giày có th&#7875; k&#7871;t h&#7907;p v&#7899;i b&#7845;t c&#7913; trang ph&#7909;c nào ', '1672559312507.jpg', '950', 'NIKE AIR MAX SC LEA ', 546, 4, 's10pc'),
+(92, 'Giày Nike Precision 5 m&#7897;t m&#7851;u giày sneaker Nike làm b&#7857;ng ch&#7845;t li&#7879;u cao c&#7845;p và công ngh&#7879; &#273;&#7881;nh cao s&#7869; là m&#7897;t l&#7921;a ch&#7885;n tuy&#7879;t v&#7901;i c&#7911;a các tín &#273;&#7891; sneaker.', '1672559386689.jpg', '890', 'NIKE PRECISION 5', 10, 4, 's10pc'),
+(93, 'Giày Nike Air Zoom Pegasus 39 là m&#7851;u giày th&#7875; thao phiên b&#7843;n th&#7913; 39 c&#7911;a dòng giày huy&#7873;n tho&#7841;i Nike Pegasus n&#7893;i ti&#7871;ng.', '1672559520548.jpg', '790', 'NIKE AIR ZOOM PEGASUS 39', 10, 4, 's20pc'),
+(94, 'Giày Adidas Breaknet  &#273;&#432;&#7907;c thi&#7871;t k&#7871; basic cho các tín &#273;&#7891; yêu th&#7901;i trang. V&#7899;i các ki&#7875;u thi&#7871;t k&#7871; Original .', '1672559646247.jpg', '60', 'ADIDAS BREAKNET', 10, 4, 's10pc'),
+(95, 'Giày adidas Advancourt Base &#273;&#432;&#7907;c thi&#7871;t k&#7871; basic cho các tín &#273;&#7891; yêu th&#7901;i trang. V&#7899;i các ki&#7875;u thi&#7871;t k&#7871; Original .', '1672559725432.jpg', '999', 'ADIDAS ADVANCOURT BASE', 10, 4, 's20pc'),
+(98, ' &#272;ây là s&#7843;n ph&#7849;m khá phù h&#7907;p &#273;&#7875; b&#7843;o v&#7879; giúp kh&#7899;p g&#7889;i kh&#7887;e m&#7841;nh h&#417;n mà v&#7851;n linh ho&#7841;t khi ch&#7841;y nh&#7843;y.', '1672576047016.jpg', '270', '&#272;ai B&#7843;o v&#7879; Kh&#7899;p G&#7889;i', 15, 2, 's10pc'),
+(99, 'Th&#7843;m t&#7853;p yoga 2 l&#7899;p 6mm t&#7863;ng kèm túi Rhino M901 cao su non TPE siêu bám, ch&#7889;ng tr&#432;&#7907;t, t&#7853;p gym, th&#7875; d&#7909;c t&#7841;i nhà - Hàng chính hãng', '1672576164687.jpg', '190', 'Th&#7843;m t&#7853;p yoga 2 l&#7899;p 6mm', 20, 2, 's10pc'),
+(114, 'Chi&#7871;c túi có thi&#7871;t k&#7871; tr&#7867; trung và n&#259;ng &#273;&#7897;ng, linh ho&#7841;t trong m&#7885;i nhu c&#7847;u s&#7917; d&#7909;ng', '1672577889840.jpg', '560', 'Ba lô th&#7875; thao s&#7913;c ch&#7913;a l&#7899;n 50L', 30, 2, 'default'),
+(115, 'Nh&#7901; &#273;&#432;&#7907;c làm t&#7915; ch&#7845;t li&#7879;u Polyester giúp túi Nike DQ5735-010 có kh&#7843; n&#259;ng gi&#7919; màu t&#7889;t, h&#7841;n ch&#7871; bám b&#7849;n, d&#7877; dàng v&#7879; sinh', '1672577948006.jpg', '1000', 'Balo Du L&#7883;ch &#272;&#7865;p Chi&#7871;n Thu&#7853;t Lính M&#7929; ', 40, 2, 's10pc');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `product_color`
+--
+
+CREATE TABLE `product_color` (
+  `color_id` int(11) NOT NULL,
+  `color` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `product_color`
+--
+
+INSERT INTO `product_color` (`color_id`, `color`) VALUES
+(1, 'Red'),
+(2, 'White'),
+(3, 'Black'),
+(5, 'Green'),
+(6, 'Yellow'),
+(7, 'Grey'),
+(8, 'Violet'),
+(9, 'Blue');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `product_detail`
+--
+
+CREATE TABLE `product_detail` (
+  `detail_id` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `product_id` bigint(20) NOT NULL,
+  `size_id` int(11) NOT NULL,
+  `color_id` int(11) NOT NULL,
+  `quantity` int(100) NOT NULL,
+  `image` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `product_detail`
+--
+
+INSERT INTO `product_detail` (`detail_id`, `date`, `product_id`, `size_id`, `color_id`, `quantity`, `image`) VALUES
+(1, '2023-01-01', 44, 2, 9, 10, '1672563853918.jpg'),
+(2, '2023-01-01', 47, 2, 2, 10, '1672564524141.png'),
+(3, '2023-01-01', 48, 3, 1, 10, '1672564984356.jpg'),
+(4, '2022-12-15', 49, 3, 3, 10, ''),
+(5, '2022-12-15', 50, 3, 3, 10, ''),
+(6, '2022-12-15', 51, 3, 3, 10, ''),
+(7, '2022-12-15', 52, 3, 3, 10, ''),
+(8, '2022-12-15', 49, 2, 2, 13, ''),
+(9, '2023-01-01', 44, 3, 9, 10, '1672563916431.jpg'),
+(12, '2023-01-01', 72, 3, 3, 10, '1672565702774.jpg'),
+(13, '2023-01-01', 73, 3, 9, 10, '1672565737190.jpg'),
+(14, '2023-01-01', 74, 3, 9, 10, '1672565793715.jpg'),
+(15, '2023-01-01', 75, 3, 2, 10, '1672565810670.jpg'),
+(16, '2023-01-01', 77, 3, 3, 10, '1672565825305.jpg'),
+(17, '2023-01-01', 78, 3, 3, 20, '1672565858923.jpg'),
+(18, '2023-01-01', 91, 8, 3, 10, '1672565894606.jpg'),
+(19, '2023-01-01', 92, 8, 2, 10, '1672565912281.jpg'),
+(20, '2023-01-01', 93, 8, 9, 20, '1672565927410.jpg'),
+(21, '2023-01-01', 94, 9, 3, 10, '1672565957262.jpg'),
+(22, '2023-01-01', 95, 9, 3, 10, '1672565977625.jpg'),
+(23, '2023-01-01', 79, 3, 9, 10, '1672566015665.jpg'),
+(24, '2023-01-01', 80, 3, 8, 10, '1672566034193.jpg'),
+(25, '2023-01-01', 81, 4, 2, 10, '1672566053495.jpg'),
+(26, '2023-01-01', 90, 4, 9, 12, '1672566067933.jpg'),
+(27, '2023-01-01', 98, 4, 3, 10, '1672577652803.jpg'),
+(28, '2023-01-01', 99, 5, 5, 10, '1672577678536.jpg'),
+(29, '2023-01-01', 114, 4, 3, 10, '1672577700946.jpg'),
+(30, '2023-01-01', 115, 4, 3, 10, '1672577714404.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `product_size`
+--
+
+CREATE TABLE `product_size` (
+  `size_id` int(11) NOT NULL,
+  `size` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `product_size`
+--
+
+INSERT INTO `product_size` (`size_id`, `size`) VALUES
+(1, 'S'),
+(2, 'M'),
+(3, 'L'),
+(4, 'XL'),
+(5, 'XXL'),
+(6, '38'),
+(7, '39'),
+(8, '40'),
+(9, '41'),
+(10, '42'),
+(11, '43');
 
 -- --------------------------------------------------------
 
@@ -299,30 +341,20 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `address`, `full_name`, `gender`, `image`, `password`, `phone`, `role_id`, `avatar`, `email`, `verify`) VALUES
-(31, 'China - Tokyo - Mexico - Horykito', 'Mr. Admin', b'1', NULL, '$2a$10$DdMa52LPog0YrXowd0UpqOragthbJ18jiseJNMh88o.E2T4tDuTau', '0999999999', 1, '1669986667346.jpg', 'admin@gmail.com', b'1'),
+(31, 'China - Tokyo - Mexico - Horykito', 'Mr. Admin', b'1', NULL, '$2a$10$DdMa52LPog0YrXowd0UpqOragthbJ18jiseJNMh88o.E2T4tDuTau', '0999999999', 1, '1669986667346.png', 'admin@gmail.com', b'1'),
 (40, 'FPT University - Thach That - Ha Noi', 'Ha Van Quang', b'0', NULL, '$2a$10$d5NAjxsbcz7G251w2undHejUBfdZTvZxu8nrK8rgymoJiIVyUOoBq', '0968904962', 3, '1609219156198.png', 'coosi29@gmail.com', b'1'),
 (70, 'Mexico - America - Suner', 'Mr.Alibaba', b'0', NULL, '$2a$10$UoDaMVKoHQUSQPgCh9z4b.z/InnYcI/8fvuTbNzVxn3Qq93SdVYFO', '012-736-9403', 3, '1608541027514.png', 'alibaba@gmail.com', b'1'),
-(76, 'Southern California - America', 'Mr. Memory', b'0', NULL, '$2a$10$OEFg0tRbevdcwAp2d8gXW.xNSft55kBsHP6FDc.wOD1pe5/Nn.Dzy', '043-045-3562', 3, '1608484153089.png', 'memory@gmail.com', b'1'),
+(76, 'Southern California - America', 'Mr. Memory', b'0', NULL, '$2a$10$iNeeSYGdHdcjVsdkkCqHheRhMoMWMNnZMJfV4CT7Bvo.TjIS6yZSy', '0430453562', 3, '1670765566921.png', 'memory@gmail.com', b'1'),
 (78, 'Lai Cach - Xua Giang - Soc Son - Ha Noi', 'Mr. Quang', b'0', NULL, '$2a$10$BCAIKnWcbxUmj.81TxirUOtwlzDL1b2/FflK3xQ/G/NseBL/XdbMC', '0946283645', 3, '1608484153089.png', 'quanghvhe140233@fpt.edu.vn', b'1'),
 (79, 'Futura - Tokyo - Japan', 'Mr. Discount', b'0', NULL, '$2a$10$LM7P5.BShyKGQnoXP6CACuEI7pOEQZJ.TA0e6oTdxr6KDXHLTKxPK', '023-423-3826', 3, '1608484153089.png', 'discount@gmail.com', b'1'),
 (81, 'Atarakasta - Loberbitoi - Mohades', 'Mr. Suzuki', b'0', NULL, '$2a$10$6qXsuicu7WZmG6np7jQeaOU6zo/w5vDthejVUTVZjRR9wWEKv0DwC', '0526357363', 3, '1608484153089.png', 'suziki@gmail.com', b'1'),
-(84, '132 Chu Van An - Cau Giay - Ha Noi', 'Mr. Create', b'1', NULL, '$2a$10$k5tDvXLhGg2a.w2qVi3P2egWtmLQCtGk1xmnjey7Z9UcnlyLOrmoy', '0937352647', 1, '1612349833775.png', 'create@gmail.com', b'0'),
-(88, NULL, NULL, b'0', NULL, '$2a$10$Sq1gFN4bhRTmC1WT8c6PJuBs9s0qtIA6Y.aongdJD3pt50c1YFB4K', NULL, 3, '1608484153089.png', 'nguyendinhkhue14102000@gmail.com', b'1'),
-(89, NULL, NULL, b'0', NULL, '$2a$10$dgttFgJkC.8ogpd7hjWHyuTSw/loUnu8yKQlthgL678GGH0QP8wH6', NULL, 3, '1608484153089.png', 'sads@gmail.com', b'0'),
-(90, NULL, NULL, b'0', NULL, '$2a$10$2pJAHf1spIjeDhm40B.fWuxNi5UxPn6ztXU9wKLH1VL4YdZ4VWdp.', NULL, 3, '1608484153089.png', 'QDSF@gmail.com', b'0'),
-(91, NULL, NULL, b'0', NULL, '$2a$10$5.pCxBFFYzMq7056r6TNNODzOfC/FyFuakI8EeywoQmVHUjU61oxa', NULL, 3, '1608484153089.png', 'ass1d@gmail.com', b'0'),
-(92, NULL, NULL, b'0', NULL, '$2a$10$A8r57H93QmIikC4gBQwuL.M1L7AnGRXWzByJvzwnQP/PfZhBUxopW', NULL, 3, '1608484153089.png', 'lucurata@gmail.com', b'1'),
-(93, NULL, NULL, b'0', NULL, '$2a$10$idBT4HXAlkdaBws8PJBryueDlj1sOApoOb2HEEITPATB1Wkyjlqca', NULL, 3, '1608484153089.png', 'locota@gmail.com', b'0'),
-(94, NULL, NULL, b'0', NULL, '$2a$10$CEwil.cgd.N9LyPIx3mIrO5qGCdAiaZlVoNaKVIefsA5vwVh7oQn2', NULL, 3, '1608484153089.png', 'lukuta@gmail.com', b'1'),
 (95, 'FPT University - Hoa Lac - Thach That - Ha Noi', 'Mr. Mo Mo', b'0', NULL, '$2a$10$vfbGaiCUzXnAJL5gX5EmmeoKgDfFmuTVzoCUR6QXc.gwDpKj4zuyC', '0973645345', 3, '1608484153089.png', 'amomo@gmail.com', b'1'),
-(96, NULL, NULL, b'0', NULL, NULL, NULL, NULL, NULL, NULL, b'0'),
-(97, NULL, NULL, b'0', NULL, NULL, NULL, NULL, NULL, NULL, b'0'),
-(98, NULL, NULL, b'0', NULL, NULL, NULL, NULL, NULL, NULL, b'0'),
-(99, NULL, NULL, b'0', NULL, NULL, NULL, NULL, NULL, NULL, b'0'),
-(100, NULL, NULL, b'0', NULL, NULL, NULL, NULL, NULL, NULL, b'0'),
-(101, NULL, NULL, b'0', NULL, NULL, NULL, NULL, NULL, NULL, b'0'),
-(106, 'ptit hcm', 'sang tran', b'1', NULL, '$2a$10$4jehps29xLVhv2cZIl4J0.jcjnUOZUdombnl9OAuH/fHkRWUbK5Xm', '0886932222', 3, '1669986160462.jpg', 'sang@gmail.com', b'1'),
-(107, NULL, 'sang', b'0', NULL, '$2a$10$/8xYoO78VTgGqC/PZ2NU5OBL43Ihq9e3OVuqbuAp.2HYf5d7sLIHy', '0786756456', 3, '1608484153089.png', 'admi@gmai.com', b'0');
+(106, 'ptit hcm', 'sang tran', b'1', NULL, '$2a$10$4jehps29xLVhv2cZIl4J0.jcjnUOZUdombnl9OAuH/fHkRWUbK5Xm', '0886932222', 3, '1608484153089.png', 'sang@gmail.com', b'1'),
+(109, NULL, 'sang', b'0', NULL, '$2a$10$9G87s5XoI37BFrod28ffLOQ.EieVL3CczqSli5LhTCOEK.BtKpBqa', '0886932511', 3, '1608484153089.png', 'trung@gmail.com', b'1'),
+(110, NULL, 'Nam', b'0', NULL, '$2a$10$cXhu3EMxb0QidRUGvh0Or.gW1rEHH8Ntw1gZkfvLruLVnxpLdFWAi', '0886932566', 3, '1608484153089.png', 'nam24@gmail.com', b'1'),
+(111, '95 man thien,Tp.Thu Duc', 'sang tran', b'1', NULL, '$2a$10$4jehps29xLVhv2cZIl4J0.jcjnUOZUdombnl9OAuH/fHkRWUbK5Xm', '0886932222', 3, '1608484153089.png', 'sang@gmail.com', b'1'),
+(112, NULL, 'Tráº§n Ngá»c Sang', b'1', NULL, '$2a$10$jHgcT9VRN8WQh3ZUodyxK.F4mqdMCpKrFYG3QoGmAN3lqdSqBwSwy', '0886932511', 3, '1608484153089.png', 'tranosa2511@gmail.com', b'0'),
+(113, NULL, 'Tráº§n Ngá»c Sang', b'1', NULL, '$2a$10$jHgcT9VRN8WQh3ZUodyxK.F4mqdMCpKrFYG3QoGmAN3lqdSqBwSwy', '0886932511', 3, '1608484153089.png', 'tranosa2511@gmail.com', b'1');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -338,7 +370,10 @@ ALTER TABLE `category`
 -- Chỉ mục cho bảng `item`
 --
 ALTER TABLE `item`
-  ADD PRIMARY KEY (`item_id`);
+  ADD PRIMARY KEY (`item_id`),
+  ADD KEY `FK8888888888888` (`order_id`),
+  ADD KEY `FK111111111111` (`product_id`) USING BTREE,
+  ADD KEY `FKDT` (`detail_id`);
 
 --
 -- Chỉ mục cho bảng `order_user`
@@ -354,6 +389,27 @@ ALTER TABLE `product`
   ADD PRIMARY KEY (`product_id`),
   ADD KEY `FK1mtsbur82frn64de7balymq9s` (`category_id`),
   ADD KEY `FKtgpfnkn7etmfumakc3iq75e95` (`sale_id`);
+
+--
+-- Chỉ mục cho bảng `product_color`
+--
+ALTER TABLE `product_color`
+  ADD PRIMARY KEY (`color_id`);
+
+--
+-- Chỉ mục cho bảng `product_detail`
+--
+ALTER TABLE `product_detail`
+  ADD PRIMARY KEY (`detail_id`),
+  ADD KEY `FK2222222` (`product_id`) USING BTREE,
+  ADD KEY `FK444444` (`color_id`) USING BTREE,
+  ADD KEY `FK33333333` (`size_id`) USING BTREE;
+
+--
+-- Chỉ mục cho bảng `product_size`
+--
+ALTER TABLE `product_size`
+  ADD PRIMARY KEY (`size_id`);
 
 --
 -- Chỉ mục cho bảng `role`
@@ -389,19 +445,25 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT cho bảng `item`
 --
 ALTER TABLE `item`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT cho bảng `order_user`
 --
 ALTER TABLE `order_user`
-  MODIFY `order_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `order_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT cho bảng `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
+  MODIFY `product_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
+
+--
+-- AUTO_INCREMENT cho bảng `product_detail`
+--
+ALTER TABLE `product_detail`
+  MODIFY `detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT cho bảng `role`
@@ -413,11 +475,19 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT cho bảng `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
+  MODIFY `user_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
 --
+
+--
+-- Các ràng buộc cho bảng `item`
+--
+ALTER TABLE `item`
+  ADD CONSTRAINT `item_ibfk_2` FOREIGN KEY (`order_id`) REFERENCES `order_user` (`order_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `item_ibfk_3` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `item_ibfk_4` FOREIGN KEY (`detail_id`) REFERENCES `product_detail` (`detail_id`) ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `order_user`
@@ -431,6 +501,14 @@ ALTER TABLE `order_user`
 ALTER TABLE `product`
   ADD CONSTRAINT `FK1mtsbur82frn64de7balymq9s` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`),
   ADD CONSTRAINT `FKtgpfnkn7etmfumakc3iq75e95` FOREIGN KEY (`sale_id`) REFERENCES `sale` (`sale_id`);
+
+--
+-- Các ràng buộc cho bảng `product_detail`
+--
+ALTER TABLE `product_detail`
+  ADD CONSTRAINT `product_detail_ibfk_1` FOREIGN KEY (`size_id`) REFERENCES `product_size` (`size_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_detail_ibfk_2` FOREIGN KEY (`color_id`) REFERENCES `product_color` (`color_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_detail_ibfk_3` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `user`

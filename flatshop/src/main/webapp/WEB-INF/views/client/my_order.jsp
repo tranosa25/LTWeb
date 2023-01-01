@@ -47,7 +47,7 @@
 							</form>
 						</div>
 						<div class="leftbanner">
-							<img src="../resource/client/images/vans.jpg" alt="">
+							<img src="../resource/client/images/sale4.jpg" alt="">
 						</div>
 					</div>
 					<div class="col-md-9">

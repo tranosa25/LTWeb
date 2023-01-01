@@ -11,7 +11,7 @@ Data : ShopVans <br/>
 <h2>Installation</h2>
  <a href="https://github.com/quanghavan29/FlatShop">Download FlatShop Backend</a><br/>
 <h2> - Giải nén file image_spring_boot vào ổ D: để load hình từ Database</h2>
-<h2> - dổi tên localhost thành 5sport.vn để dùng recaptcha</h2>
+<h2> - Đổi tên localhost thành 5sport.vn để dùng recaptcha</h2>
 <h2>user : admin@gmail.com
 Pass : admin
 </h2>

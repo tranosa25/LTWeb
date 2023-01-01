@@ -41,7 +41,7 @@
 								<div class="offer">-${product.saleDTO.salePercent}%</div>
 								<div class="thumbnail">
 									<a href="product-details?productId=${product.productId}"><img
-										style="width: 90%;" src="../download?image=${product.image}"
+										style="width: 100%;" src="../download?image=${product.image}"
 										alt="Product Name"></a>
 								</div>
 								<div class="productname">${product.productName}</div>
@@ -83,7 +83,7 @@
 								<div class="offer">-${product.saleDTO.salePercent}%</div>
 								<div class="thumbnail">
 									<a href="product-details?productId=${product.productId}"><img
-										style="width: 90%;" src="../download?image=${product.image}"
+										style="width: 100%;" src="../download?image=${product.image}"
 										alt="Product Name"></a>
 								</div>
 								<div class="productname">${product.productName}</div>

@@ -68,8 +68,7 @@
 									<a class="metric-link" href="../admin/product-list"
 										style="color: #676A6D;">
 										<div class="metric" style="box-shadow: 0 0 3px;">
-											<span class="icon"><i class="fab fa-product-hunt"
-												style="font-size: 26px; margin-top: 12px;"></i></span>
+											<span class="icon"><i class="fab fa-product-hunt"></i></span>
 											<p>
 												<span class="number">203,764</span> <span class="title">Product</span>
 											</p>
@@ -79,8 +78,7 @@
 								<div class="col-md-3">
 									<a class="metric-link" href="user-list" style="color: #676A6D;">
 										<div class="metric" style="box-shadow: 0 0 3px;">
-											<span class="icon"><i
-												style='font-size: 24px; margin-top: 2px;' class='fas'>&#xf0c0;</i></span>
+											<span class="icon"><i class='fas'>&#xf0c0;</i></span>
 											<p>
 												<span class="number">505</span><span class="title">User</span>
 											</p>
@@ -127,7 +125,7 @@
 														<tr>
 															<td><a href="#">No. ${order.orderId}</a></td>
 															<td>${order.userDTO.email.split("@")[0]}</td>
-															<td>$${order.priceTotal}0</td>
+															<td>${order.priceTotal}00&#8363;</td>
 															<td>${order.buyDate}</td>
 															<c:if test="${order.status eq 'PENDING'}">
 																<td><a href="order-updateHome?orderId=${order.orderId}"><span class="label label-warning">PENDING</span></a></td>
@@ -157,17 +155,17 @@
 								<div id="headline-chart" class="ct-chart"></div>
 								<div class="col-md-3">
 									<div class="weekly-summary text-right">
-										<span class="number">2,315</span> <span class="percentage"><i
+										<span class="number">2,315,000&#8363;</span> <span class="percentage"><i
 											class="fa fa-caret-up text-success"></i> 12%</span> <span
 											class="info-label">Total Sales</span>
 									</div>
 									<div class="weekly-summary text-right">
-										<span class="number">$5,758</span> <span class="percentage"><i
+										<span class="number">5,758,000&#8363;</span> <span class="percentage"><i
 											class="fa fa-caret-up text-success"></i> 23%</span> <span
 											class="info-label">Monthly Income</span>
 									</div>
 									<div class="weekly-summary text-right">
-										<span class="number">$65,938</span> <span class="percentage"><i
+										<span class="number">65,938,000&#8363;</span> <span class="percentage"><i
 											class="fa fa-caret-down text-danger"></i> 8%</span> <span
 											class="info-label">Total Income</span>
 									</div>

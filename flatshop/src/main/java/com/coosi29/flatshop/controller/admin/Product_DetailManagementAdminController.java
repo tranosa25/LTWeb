@@ -100,6 +100,7 @@ public class Product_DetailManagementAdminController {
 
 	@GetMapping(value = "/productdetail-update")
 	public String update(HttpServletRequest request, @RequestParam(name = "detailId") long detailId) {
+		request.setAttribute("name", request.getParameter("productName"));
 		request.setAttribute("detail", detailService.findByDetailId(detailId));
 		request.setAttribute("color", colorService.findAll());
 		request.setAttribute("size", sizeService.findAll());
@@ -109,7 +110,8 @@ public class Product_DetailManagementAdminController {
 	@PostMapping(value = "/productdetail-update")
 	public String update(HttpServletRequest request,@RequestParam(name = "imageFile", required = false) MultipartFile imageFile) {
 		//long productId = Long.parseLong(request.getParameter("pId"));
-		//long productId = Long.parseLong(request.getParameter("productId"));
+		long productId = Long.parseLong(request.getParameter("productId"));
+		long detailId = Long.parseLong(request.getParameter("detailId"));
 		int color = Integer.parseInt(request.getParameter("colorId"));
 		int size = Integer.parseInt(request.getParameter("sizeId"));
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
@@ -117,8 +119,15 @@ public class Product_DetailManagementAdminController {
 		
 		ProductDetailDTO productdetailDTO = new ProductDetailDTO();
 	    productdetailDTO.setColorId(color);
+	    productdetailDTO.setDetailId(detailId);
+	    productdetailDTO.setProductId(productId);
 	    productdetailDTO.setQuantity(quantity);
 	    productdetailDTO.setSizeId(size);
+	    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		// tạo 1 đối tượng có định dạng thời gian yyyy-MM-dd
+		Date date = new Date(); // lấy thời gian hệ thống
+		String stringDate = dateFormat.format(date);// Định dạng thời gian theo trên
+		productdetailDTO.setDate(stringDate);
 		if (imageFile != null && imageFile.getSize() > 0) {
 			String originalFilename = imageFile.getOriginalFilename();
 			int lastIndex = originalFilename.lastIndexOf(".");

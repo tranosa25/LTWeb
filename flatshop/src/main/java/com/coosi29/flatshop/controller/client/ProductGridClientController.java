@@ -28,9 +28,13 @@ public class ProductGridClientController {
 		if (request.getParameter("pageIndex") != null) {
 			pageIndex = Integer.parseInt(request.getParameter("pageIndex"));
 		}
+		if (request.getParameter("pageSize") != null) {
+			pagesize = Integer.parseInt(request.getParameter("pageSize"));
+		}
 		if (count % pagesize == 0) {
 			totalPage = count / pagesize;
-		} else {
+		} 
+		else {
 			totalPage = count / pagesize + 1;
 		}
 		request.setAttribute("pageIndex", pageIndex);

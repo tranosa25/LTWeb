@@ -65,6 +65,8 @@ public class ProductDetailServiceimpl implements ProductDetailService{
 		size.setSize_id(detailDTO.getSizeId());
 		productdetail.setColor(color);
 		productdetail.setSize(size);
+		productdetail.setDate(detailDTO.getDate());
+		productdetail.setDetail_id(detailDTO.getDetailId());
 
 		detailDAO.update(productdetail);
 	}

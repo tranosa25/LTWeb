@@ -31,11 +31,11 @@
 				<div class="row">
 					<div class="col-md-3">
 						<div class="category leftbar">
-							<h3 class="title">Color</h3>
+							<h3 class="title" style="font-weight:bold;font-size:18px;">Color</h3>
 							<ul>
 								<c:forEach items="${colors}" var="color">
 									<li><a
-										href="search?pricing=${pricing}&text=${text}&pageIndex=${pageIndex}&categoryId=${categoryId}&pageSize=${pageSize}&colorId=${color.getColorId()}">
+										href="search?pricing=${pricing}&text=${text}&pageIndex=${pageIndex}&categoryId=${categoryId}&pageSize=${pageSize}&colorId=${color.getColorId()} " style="font-weight:bold;" >
 											${color.getColor()}</a>
 											<input type="hidden" name="colorId" value="${color.getColorId()}" />
 									</li>
@@ -43,42 +43,16 @@
 							</ul>
 						</div>
 
-						<div class="price-filter leftbar">
-							<h3 class="title">Size</h3>
-							<form class="pricing" action="search" method="get">
-								<select name="pricing" onchange='this.form.submit()'>
-									<option
-										<c:if test="${pricing eq 'default'}">
-										selected="selected"
-										</c:if>
-										value="default">Find by price</option>
-									<option
-										<c:if test="${pricing eq 'under50'}">
-										selected="selected"
-										</c:if>
-										value="under50">under 50 dollars</option>
-									<option
-										<c:if test="${pricing eq '50to70'}">
-										selected="selected"
-										</c:if>
-										value="50to70">50 dollars to 70 dollars</option>
-									<option
-										<c:if test="${pricing eq 'greaterthan70'}">
-										selected="selected"
-										</c:if>
-										value="greaterthan70">greater than 70 dollars</option>
-									<input type="hidden" name="categoryId" value="${categoryId}" />
-									<input type="hidden" name="text" value="${text}" />
-								</select>
-							</form>
-						</div>
-
+				
 						<div class="clearfix"></div>
-						<div class="others leftbar">
-							<h3 class="title">Others</h3>
+						<div class="leftbanner">
+							<img src="../resource/client/images/sale1.jpg" alt="">
 						</div>
 						<div class="clearfix"></div>
-						<div class="fbl-box leftbar">
+						<div class="leftbanner">
+							<img src="../resource/client/images/sale4.jpg" alt="">
+						</div>
+					<!-- 	<div class="fbl-box leftbar">
 							<h3 class="title">Facebook</h3>
 							<span class="likebutton"> <a href="#"> <img
 									src="../resource/client/images/fblike.png" alt="">
@@ -101,10 +75,10 @@
 								</span> Facebook social plugin
 								</a>
 							</div>
-						</div>
+						</div> -->
 						<div class="clearfix"></div>
 						<div class="leftbanner">
-							<img src="../resource/client/images/vans.jpg" alt="">
+							<img src="../resource/client/images/sale3.jpg" alt="">
 						</div>
 					</div>
 					<div class="col-md-9">

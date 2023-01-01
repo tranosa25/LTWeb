@@ -268,7 +268,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<ProductDTO> search(long categoryId, String pricing, float priceFrom, float priceTo, String sort,
 			String text, int pageIndex, int pageSize,int colorId) {
-		List<Product> products = productDao.search(categoryId, pricing, priceFrom, priceTo, sort, text, pageIndex, pageSize,colorId);
+		List<Product> products = productDao.search(categoryId, pricing, priceFrom, priceTo, sort, text, pageIndex, pageSize, colorId);
 		List<ProductDTO> productDTOs = new ArrayList<>();
 		for (Product product : products) {
 			SaleDTO saleDTO = new SaleDTO();

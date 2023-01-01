@@ -101,7 +101,7 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Override
 	public List<Product> search(long categoryId, String pricing, float priceFrom, float priceTo, String sort,
-			String text, int pageIndex, int pageSize, int colorId) {
+			String text, int pageIndex, int pageSize,int colorId) {
 		String sql = "SELECT p FROM Product_Detail pd left outer join pd.product p WHERE p.category.categoryId = " + categoryId;
 		try {
 		if (pricing != null && !pricing.equals("default") && !pricing.equals("")) {
@@ -116,10 +116,10 @@ public class ProductDaoImpl implements ProductDao {
 		if (sort != null && !sort.equals("default")) {
 			sql += " ORDER BY (p.price - (p.price * p.sale.salePercent / 100)) " + sort;
 		}
-		try {
-		if (colorId != 0) {
-			sql += "and pd.color.color_id = " + colorId;
-		}}catch (NoResultException nre) {}
+		
+		  try { if (colorId != 0) { sql += "and pd.color.color_id = " + colorId;
+		  }}catch (NoResultException nre) {}
+		 
 		int first = pageIndex * pageSize;
 		Query query = sessionFactory.getCurrentSession().createQuery(sql).setFirstResult(first).setMaxResults(pageSize);
 		return query.list();
@@ -127,8 +127,7 @@ public class ProductDaoImpl implements ProductDao {
 		}
 
 	@Override
-	public int countBySearch(long categoryId, String pricing, float priceFrom, float priceTo, String text,
-			int colorId) {
+	public int countBySearch(long categoryId, String pricing, float priceFrom, float priceTo, String text,int colorId) {
 		try {
 			String sql = "SELECT count(p) FROM Product_Detail pd left outer join pd.product p  where p.category.categoryId = "
 					+ categoryId;
@@ -139,9 +138,9 @@ public class ProductDaoImpl implements ProductDao {
 			if (text != null) {
 				sql += " and p.productName like '%" + text + "%'";
 			}
-			if (colorId != 0) {
-				sql += "and pd.color.color_id = " + colorId;
-			}
+		
+			 if (colorId != 0) { sql += "and pd.color.color_id = " + colorId; }
+			 
 			Query query = sessionFactory.getCurrentSession().createQuery(sql);
 			long count = (long) query.uniqueResult();
 			return (int) count;

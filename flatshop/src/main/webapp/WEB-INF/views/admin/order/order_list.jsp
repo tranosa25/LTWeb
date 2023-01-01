@@ -92,7 +92,7 @@
 																<td style="vertical-align: middle;">No.
 																	${order.orderId}</td>
 																	<td>${order.userDTO.email.split("@")[0]}</td>
-															<td>$${order.priceTotal}0</td>
+															<td>${order.priceTotal}00&#8363;</td>
 															<td>${order.buyDate}</td>
 															<c:if test="${order.status eq 'PENDING'}">
 																<td><a href="order-update?orderId=${order.orderId}&pageIndex=${pageIndex}

@@ -27,7 +27,9 @@ public interface ProductDao {
 	
 	List<Product> featuredProducts(int pageIndex, int pageSize);
 	
-	List<Product> search(long categoryId, String pricing, float priceFrom, float priceTo, String sort, String text, int pageIndex, int pageSize, int colorId);
-	
-	int countBySearch(long categoryId, String pricing, float priceFrom, float priceTo, String text, int colorId);
+
+	List<Product> search(long categoryId, String pricing, float priceFrom, float priceTo, String sort, String text,
+			int pageIndex, int pageSize,int colorId);
+
+	int countBySearch(long categoryId, String pricing, float priceFrom, float priceTo, String text,int colorId);
 }

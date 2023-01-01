@@ -105,10 +105,10 @@
 												</div>
 											</td>
 											<td>
-												<h5 style="color: #41B314; font-weight: bold;">$${item.unitPrice}0</h5>
+												<h5 style="color: #41B314; font-weight: bold;">${item.unitPrice}00&#8363;</h5>
 												<c:if test="${item.productDTO.saleDTO.salePercent > 0}">
 													<p
-														style="font-size: 16px; padding-top: 7px; text-decoration: line-through;">$${item.productDTO.price}0</p>
+														style="font-size: 16px; padding-top: 7px; text-decoration: line-through;">${item.productDTO.price}00&#8363;</p>
 												</c:if>
 											</td>
 											<td><select name="quantity" style="color: red;">
@@ -118,8 +118,8 @@
 											</select></td>
 											<td>
 												<h5>
-													<strong class="red" style="color: red;"> $${item.unitPrice *
-														item.quantity}0 </strong>
+													<strong class="red" style="color: red;"> ${item.unitPrice *
+														item.quantity}00&#8363; </strong>
 												</h5>
 											</td>
 											<td><select>
@@ -136,10 +136,10 @@
 								</tbody>
 								<tfoot>
 									<tr>
-										<td colspan="6"><span class="pull-left">Sub Total: <span style="color: red;">$${order.priceTotal - 5}0</span></span><br /> <span
-											class="pull-left">Fee: <span style="color: red;">$5.00</span></span><br /> <span  
+										<td colspan="6"><span class="pull-left">Sub Total: <span style="color: red;">${order.priceTotal - 5}00&#8363;</span></span><br /> <span
+											class="pull-left">Fee: <span style="color: red;">5.000&#8363;</span></span><br /> <span  
 											class="pull-left" style="font-size: 22px;">Grand
-												Total: <span style="color: red;">$${order.priceTotal}0</span>
+												Total: <span style="color: red;">${order.priceTotal}00&#8363;</span>
 										</span>
 											<p class="pull-right" style="display: flex; border: none;">
 												<i class="material-icons"

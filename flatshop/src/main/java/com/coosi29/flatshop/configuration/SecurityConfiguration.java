@@ -33,10 +33,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.passwordParameter("password").defaultSuccessUrl("/home")
 				.failureUrl("/login?err=email or password incorrect!").permitAll();
 		
-		http.headers()
-        .xssProtection()
-        .and()
-        .contentSecurityPolicy("script-src 'self'");
 	
 		http.logout().logoutSuccessUrl("/login").permitAll();
 		 

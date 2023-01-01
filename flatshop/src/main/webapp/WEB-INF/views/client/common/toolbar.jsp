@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -73,17 +73,17 @@
 						<c:if test="${pricing eq 'under50'}">
 										selected="selected"
 										</c:if>
-						value="under50">under 50 dollars</option>
+						value="under50">under 50,000&#8363;</option>
 					<option
 						<c:if test="${pricing eq '50to70'}">
 										selected="selected"
 										</c:if>
-						value="50to70">50 dollars to 70 dollars</option>
+						value="50to70">50,000&#8363; to 70,000&#8363;</option>
 					<option
 						<c:if test="${pricing eq 'greaterthan70'}">
 										selected="selected"
 										</c:if>
-						value="greaterthan70">greater than 70 dollars</option>
+						value="greaterthan70">greater than 70,000&#8363;</option>
 					<input type="hidden" name="categoryId" value="${categoryId}"></input>
 					<input type="hidden" name="text" value="${text}" />
 				</select>

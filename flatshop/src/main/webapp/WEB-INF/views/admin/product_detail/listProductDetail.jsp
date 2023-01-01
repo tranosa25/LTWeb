@@ -105,7 +105,7 @@
 																			style="font-size: 15px;">Update</span>
 																	</a></td>
 																	<td style="vertical-align: middle;width:5%;"><a
-																		href="productdetail-delete?detailId=${detail.getDetailId()}">
+																		href="productdetail-delete?detailId=${detail.getDetailId()}&productName=${ProductName}">
 																			<span class="label label-warning"
 																			style="font-size: 15px;">Delete</span>
 																	</a></td>

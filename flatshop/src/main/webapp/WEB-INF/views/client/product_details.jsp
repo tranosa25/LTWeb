@@ -77,21 +77,18 @@
 								<form action="add-to-cart" method="post">
 									<div class="cosize">
 										<div class="color">
-											Color &nbsp;&nbsp;: <select name="color">
+											Color &nbsp;&nbsp;: <select name="colorId">
 												<c:forEach items="${colors}" var="color">
-													<option>${color.getColor()}</option>
-													<input type="hidden" name="colorId"
-														value="${color.getColorId()}" />
+													<option value="${color.getColorId()}">${color.getColor()}
+													</option>
 												</c:forEach>
 											</select>
 
 										</div>
 										<div class="size">
-											Size &nbsp;&nbsp;: <select name="size">
+											Size &nbsp;&nbsp;: <select name="sizeId">
 												<c:forEach items="${sizes}" var="size">
-													<option>${size.getSize()}</option>
-													<input type="hidden" name="sizeId"
-														value="${size.getSizeId()}" />
+													<option value="${size.getSizeId()}">${size.getSize()}
 												</c:forEach>
 											</select>
 
@@ -113,8 +110,7 @@
 												value="${product.productId}" />
 										</div>
 										<div class="button_group">
-											 <a
-												href="add-to-cart?productId=${product.productId}"><button
+											<a href="add-to-cart?productId=${product.productId}"><button
 													class="button">Add To Cart</button></a>
 											<button class="button favorite">
 												<i class="fa fa-heart-o"> </i>
@@ -135,13 +131,13 @@
 						<div th:replace="client/common/special :: special"></div>
 						<div class="clearfix"></div>
 						<div class="clearfix"></div>
-						<div class="others leftbar">
-							<h3 class="title">Others</h3>
+						<div class="leftbanner">
+							<img src="../resource/client/images/sale1.jpg" alt="">
 						</div>
 						<div class="clearfix"></div>
 						<div class="clearfix"></div>
 						<div class="leftbanner">
-							<img src="../resource/client/images/vans.jpg" alt="">
+							<img src="../resource/client/images/sale2.jpg" alt="">
 						</div>
 						<div class="clearfix"></div>
 					</div>

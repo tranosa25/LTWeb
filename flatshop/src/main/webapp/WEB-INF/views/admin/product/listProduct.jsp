@@ -62,22 +62,19 @@
 															style="padding: 4px 8px; text-decoration: none; border: none; box-shadow: 2px 2px gray; font-weight: bold;">All
 															Product</a> <a class="btn btn-primary"
 															href="product-list-by-category?categoryId=1"
-															style="background-color: #00AAFF; padding: 4px 8px; text-decoration: none; border: none; margin-left: 5px;">Shoes</a> <a class="btn btn-info"
+															style="background-color: #00AAFF; padding: 4px 8px; text-decoration: none; border: none; margin-left: 5px;">Football</a> <a class="btn btn-info"
 															href="product-list-by-category?categoryId=2"
-															style="background-color: #E4CB10; padding: 4px 8px; text-decoration: none; border: none; margin-left: 5px;">Vans
-															classic</a> <a class="btn btn-success"
+															style="background-color: #E4CB10; padding: 4px 8px; text-decoration: none; border: none; margin-left: 5px;">Accessories
+															</a> <a class="btn btn-success"
 															href="product-list-by-category?categoryId=3"
-															style="background-color: #41B314; padding: 4px 8px; text-decoration: none; border: none; margin-left: 7px;">Vans
-															ERA</a> <a class="btn btn-warning"
+															style="background-color: #41B314; padding: 4px 8px; text-decoration: none; border: none; margin-left: 7px;">Basketball
+															</a> <a class="btn btn-warning"
 															href="product-list-by-category?categoryId=4"
-															style="background-color: #D9534F; padding: 4px 8px; text-decoration: none; border: none; margin-left: 5px;">Vans
-															old skool</a> <a class="btn btn-danger"
-															href="product-list-by-category?categoryId=5"
-															style="background-color: #5BC0DE; padding: 4px 8px; text-decoration: none; border: none; margin-left: 5px;">Vans
-															SK8</a> <a class="btn btn-danger"
+															style="background-color: #D9534F; padding: 4px 8px; text-decoration: none; border: none; margin-left: 5px;">Shoes
+															 </a> <a class="btn btn-danger"
 															href="product-list-by-category?categoryId=6"
-															style="background-color: gray; padding: 4px 8px; text-decoration: none; border: none; margin-left: 5px;">Vans
-															slip-on</a>
+															style="background-color: gray; padding: 4px 8px; text-decoration: none; border: none; margin-left: 5px;">
+															Badminton</a>
 													</p>
 													<div class="right">
 														<button type="submit">

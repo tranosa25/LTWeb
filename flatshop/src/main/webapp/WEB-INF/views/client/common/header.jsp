@@ -1,10 +1,11 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
-<%@page pageEncoding = "utf-8" %>
+<%@page pageEncoding = "UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta charset="utf-8">
+<meta http-equiv=”Content-Type” content=”text/html; charset=utf-8″>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="images/favicon.png">
@@ -41,10 +42,10 @@
 								</ul>
 							</div>
 							<div class="col-md-6">
-								<marquee style="margin-top:10px;color:white;font-size:24px;font-family:Helvetica">
-									Sale 30% ngày 12-12 
+								<marquee style="margin-top:10px;color:white;font-size:24px;font-family:courier,arial,helvetica;height:25px;">
+									Year End Promotion Sale 20%
 									<span style="padding-right:40px;"></span>
-									Sale 30% ngày 12-12
+									Year End Promotion Sale 20%
 								</marquee>
 							</div>
 							<div class="col-md-3">

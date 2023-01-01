@@ -132,7 +132,7 @@
 					</div>
 					<div class="auth-form-group">
 						<div class="g-recaptcha input-group	"
-						data-sitekey="6LdO2lwjAAAAAHv-cges_Ow5UpDoDqAO4hqeV08e"></div>
+						data-sitekey="6Ldm4sEjAAAAAOHhYvcwWVBC6ZuSIHPx9c3p6-Wl"></div>
 					</div>
 				</div>
 

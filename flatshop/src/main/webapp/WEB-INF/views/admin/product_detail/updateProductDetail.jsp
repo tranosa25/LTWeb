@@ -59,6 +59,8 @@
 						</div>
 						<form action="productdetail-update" method="post"
 							enctype="multipart/form-data">
+							<input type="hidden" name="detailId" value="${detail.getDetailId()}"> 
+							
 							<div class="row"
 								style="display: flex; justify-content: space-between;">
 								<table style="margin: auto; margin-left: 60px;" class="col-md-6">
@@ -73,6 +75,7 @@
 														</c:if>
 														value="${colors.getColorId()}">${colors.getColor()}</option>
 												</c:forEach>
+												<input type="hidden" name="productId" value="${detail.getProductId()}">
 										</select></td>
 									</tr>
 									<tr>
@@ -116,7 +119,7 @@
 										<th></th>
 										<td>
 											<button type="submit" class="btn btn-primary"
-												style="font-weight: bold;">UPDATE</button>
+												style="font-weight: bold;"><a href="productdetail-list?productId=${detail.getProductId()}&productName=${name}">UPDATE</a></button>
 										</td>
 									</tr>
 									<tr>
@@ -125,6 +128,7 @@
 									</tr>
 								</table>
 							</div>
+							
 						</form>
 					</div>
 

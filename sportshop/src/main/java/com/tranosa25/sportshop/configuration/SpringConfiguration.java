@@ -49,7 +49,7 @@ public class SpringConfiguration {
 	public LocalSessionFactoryBean sessionFactoryBean() {
 		LocalSessionFactoryBean bean = new LocalSessionFactoryBean();
 		bean.setDataSource(dataSource());
-		bean.setPackagesToScan("com.coosi29.flatshop.entity");
+		bean.setPackagesToScan("com.tranosa25.sportshop.entity");
 
 		Properties hibernateProperties = new Properties();
 		hibernateProperties.put("hibernate.dialect", environment.getProperty("hibernate.dialect"));

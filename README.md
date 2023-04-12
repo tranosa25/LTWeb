@@ -4,7 +4,7 @@
 
 <h2 style="font-size:30">Information</h2>
 Tech : Spring MVC , My SQL, Hibernate, Security, Spring Mail, HTML, CSS,...<br/>
-Data : 5sport.sql <br/>
+Data : database.sql <br/>
 
 
 <h2 style="font-size:30">Examples</h2>

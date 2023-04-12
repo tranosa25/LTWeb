@@ -1,25 +1,22 @@
 
-<div style="display:flex;">
- <a href="#"><img src="./images/favicon.png" style="height:40px; float: left;"/></a>
-<a href="#">FlatShop</a>
+<a href="https://github.com/tranosa25/LTWeb" style="font-size:30;color:green;"><div style="text-align:center"><b>5-SPORT</b></div></a>
 </div>
 
-<h2>Information</h2>
+<h2 style="font-size:30">Information</h2>
 Tech : Spring MVC , My SQL, Hibernate, Security, Spring Mail, HTML, CSS,...<br/>
-Data : ShopVans <br/>
+Data : 5sport.sql <br/>
 
-<h2>Installation</h2>
- <a href="https://github.com/coosi29/FlatShop/tree/main/flatshop">Download FlatShop Backend</a><br/>
 
- <h2>Video Demo</h2>
- <a href="https://www.youtube.com/watch?v=0si0qdsfBQI&t=1s">Video FlatShop Demo</a><br/>
-
-<h2>Examples</h2>
+<h2 style="font-size:30">Examples</h2>
+<h2 style="font-size:30;color:green;text-align:center">Trang chủ</h2>
 <img src="./images/clienthome.png" style="height:300px , margin-bottom:10px"/>
-<img src="./images/cart.png" style="height:300px ; margin-bottom:10px"/>
-
-<img src="./images/myinfo.png" style="height:300px; margin-bottom:10px"/>
-<img src="./images/myorder.png" style="height:300px;margin-bottom:10px"/>
-<img src="./images/adminhome.png" style="height:300px;margin-bottom:10px"/>
+<h2 style="font-size:30;color:green;text-align:center">Giỏ Hàng</h2>
+<img src="./images/cart.png" style="height:300px , margin-bottom:10px"/>
+<h2 style="font-size:30;color:green;text-align:center">Thông Tin Cá Nhân</h2>
+<img src="./images/myinfor.png" style="height:300px, margin-bottom:10px"/>
+<h2 style="font-size:30;color:green;text-align:center">Đơn Hàng</h2>
+<img src="./images/myorder.png" style="height:300px,margin-bottom:10px"/>
+<h2 style="font-size:30;color:green;text-align:center">Trang Quản Trị</h2>
+<img src="./images/adminhome.png" style="height:300px,margin-bottom:10px"/>
 
 <h2>Thank you for your interest in my project.</h2>
